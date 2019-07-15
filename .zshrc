@@ -102,3 +102,4 @@ alias mntgdrive="google-drive-ocamlfuse ~/googledrive"
 alias weather="curl wttr.in"
 alias clock="tty-clock -scC 5"
 PATH=$PATH:/snap/bin
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/snap/bin:/home/emil/.gem/ruby/2.6.0/bin
