@@ -226,6 +226,8 @@ bindsym $mod+r mode "resize"
     for_window [class="Plasmoidviewer"] floating enable; border none 
     for_window [title="plasma-desktop"] floating enable; border none  
 
+ # >>> Move plasma notifications to top right corner <<<
+    for_window [class="plasmashell" window_type="notification"] move position 1570 45 
 
  # >>> Avoid tiling for non-Plasma stuff <<<       
 
