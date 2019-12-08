@@ -152,10 +152,10 @@ bindsym $mod+r mode "resize"
     font pango:ubuntumono 10
 
 # Wallpaper
- exec --no-startup-id feh --bg-scale /home/emil/pictures/wallhaven-639473.jpg
+ exec --no-startup-id feh --bg-scale /home/emil/pictures/wallhaven-p8j29p.jpg
 
 # Compositor
-  exec --no-startup-id compton -cCFb
+  exec --no-startup-id compton -Cb
 
 # >>> Gaps <<<  
     gaps inner 10  
@@ -168,7 +168,7 @@ bindsym $mod+r mode "resize"
     
 # >>> Colors <<<
 #00BCD4
-  set_from_resource $act i3wm.act #1ABC9C
+  set_from_resource $act i3wm.act #C50ED2
   set_from_resource $ina i3wm.ina #222d32
   set_from_resource $red i3wm.red #FF5252
 

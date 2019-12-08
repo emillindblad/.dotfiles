@@ -10,7 +10,7 @@ configuration {
     background-color: #000000c0;
     border-color: #00000000;
     text-color: #EFEFEF;
-    font: "Ubuntu Mono 14";
+    font: "Source Code Pro 14";
 }
  
 #window {
@@ -49,7 +49,7 @@ configuration {
 }
  
 #element selected {
-    background-color: #1ABC9C;
+    background-color: #C50ED2;
     text-color: #EFEFEF;
 }
  
