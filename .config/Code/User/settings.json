@@ -2,9 +2,11 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Monokai Sweet Dark",
+    "workbench.editor.enablePreview": false,
 
     "editor.fontFamily": "'Source Code Pro','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontSize": 14,
+    "editor.fontWeight": "500",
     "editor.cursorBlinking": "smooth",
     "editor.cursorSmoothCaretAnimation": true,
     
@@ -14,4 +16,5 @@
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.pythonPath": "/usr/bin/python",
+    "window.zoomLevel": 0,
 }
