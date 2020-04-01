@@ -41,14 +41,17 @@ call plug#end()
 " NERDcomment
     vmap ++ <plug>NERDCommenterToggle
     nmap ++ <plug>NERDCommenterToggle
-"augroup VimCompletesMeTex
-"    autocmd!
-"    autocmd FileType tex
-"        \ let b:vcm_omni_pattern = g:vimtex#re#neocomplete
-"augroup END
 
-" colorscheme sweet_dark
-set termguicolors
+" Shortcutting split navigation, saving a keypress:
+	map <C-h> <C-w>h
+	map <C-j> <C-w>j
+	map <C-k> <C-w>k
+	map <C-l> <C-w>l
+
+" Theme and colors
+    "colorscheme sweet_dark
+    set termguicolors
+
 " autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
 
 " Automatically deletes all trailing whitespace on save.
@@ -60,7 +63,7 @@ set termguicolors
 	map <leader><leader> <Esc>/<++><Enter>"_c4l
 
 """"LATEX
-	autocmd FileType tex inoremap ,sec \section{}<Enter><Enter><++><Esc>2kf}i
+	autocmd FileType tex inoremap ,eq \begin{equation}<Enter><Enter>\end{equation}<Esc>kA<Tab>
 	autocmd FileType tex inoremap ,fi \begin{fitch}<Enter><Enter>\end{fitch}<Enter><Enter><++><Esc>3kA
 	autocmd FileType tex inoremap ,exe \begin{exe}<Enter>\ex<Space><Enter>\end{exe}<Enter><Enter><++><Esc>3kA
 	autocmd FileType tex inoremap ,em \emph{}<++><Esc>T{i
@@ -209,7 +212,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
