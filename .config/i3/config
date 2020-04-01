@@ -23,10 +23,10 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show drun
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+odiaeresis focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -35,10 +35,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+odiaeresis move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -47,7 +47,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+g split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -57,8 +57,11 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+#bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+
+# move current workspace to the next output
+bindsym $mod+w move workspace to output right
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -142,30 +145,31 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+# >>> Autostart <<<
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3status
-#}
-# >>> Window titles font <<<
-    font pango:ubuntumono 10
+    # Launch polybar
+        exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-# Wallpaper
- exec --no-startup-id feh --bg-scale /home/emil/pictures/wallhaven-p8j29p.jpg
+    # >>> Window titles font <<<
+        font pango:sourcecodepro 10
 
-# Compositor
-  exec --no-startup-id compton -Cb
+    # Wallpaper
+        exec --no-startup-id feh --bg-scale /home/emil/Pictures/wallhaven-p8j29p.jpg /home/emil/Pictures/wallhaven-p8j29p.jpg
 
-# >>> Gaps <<<  
-    gaps inner 10  
-    gaps outer 0  
-  # smart_gaps on  
- 
+    # Compositor
+        exec --no-startup-id compton -Cb
+
+    # redshift
+        exec --no-startup-id redshift
+# >>> Gaps <<<
+    gaps inner 7
+    gaps outer 0
+  # smart_gaps on
+
 # >>> Remove title bar and set border <<<
-    smart_borders on  
+    smart_borders on
     for_window [class="^.*"] border pixel 1
-    
+
 # >>> Colors <<<
 #00BCD4
   set_from_resource $act i3wm.act #C50ED2
@@ -185,10 +189,10 @@ bindsym $mod+r mode "resize"
   # >>> Move floating window <<<
 
   bindsym $mod+m focus floating; mode "move"
-  
+
   mode "move" {
     # >>> Arrows <<<
-    
+
       bindsym Left move left 10px
       bindsym Down move down 10px
       bindsym Up move up 10px
@@ -200,47 +204,46 @@ bindsym $mod+r mode "resize"
       bindsym Shift+Right move right 30px
 
     # >>> Back to normal: Enter or Escape <<<
-    
+
       bindsym Return mode "default"
       bindsym Escape mode "default"
   }
 
-# >>> Plasma Integration <<<  
- # Try to kill the wallpaper set by Plasma (it takes up the entire workspace and hides everything)     
-    exec --no-startup-id wmctrl -c Plasma   
+# >>> Plasma Integration <<<
+ # Try to kill the wallpaper set by Plasma (it takes up the entire workspace and hides everything)
+    exec --no-startup-id wmctrl -c Plasma
     for_window [title="Desktop — Plasma"] kill; floating enable; border none
 
 
-# >>> Window rules <<<  
-    # >>> Avoid tiling Plasma popups, dropdown windows, etc. <<<   
-    # For the first time, manually resize them, i3 will remember the setting for floating windows    
-    
-    for_window [class="yakuake"] floating enable;     
-    for_window [class="lattedock"] floating enable;     
-    for_window [class="plasmashell"] floating enable;     
-    for_window [class="Kmix"] floating enable; border none     
-    for_window [class="kruler"] floating enable; border none     
-    for_window [class="Plasma"] floating enable; border none     
-    for_window [class="Klipper"] floating enable; border none     
-    for_window [class="krunner"] floating enable; border none     
-    for_window [class="Plasmoidviewer"] floating enable; border none 
-    for_window [title="plasma-desktop"] floating enable; border none  
+# >>> Window rules <<<
+    # >>> Avoid tiling Plasma popups, dropdown windows, etc. <<<
+    # For the first time, manually resize them, i3 will remember the setting for floating windows
+
+    for_window [class="yakuake"] floating enable;
+    for_window [class="lattedock"] floating enable;
+    for_window [class="plasmashell"] floating enable;
+    for_window [class="Kmix"] floating enable; border none
+    for_window [class="kruler"] floating enable; border none
+    for_window [class="Plasma"] floating enable; border none
+    for_window [class="Klipper"] floating enable; border none
+    for_window [class="krunner"] floating enable; border none
+    for_window [class="Plasmoidviewer"] floating enable; border none
+    for_window [title="plasma-desktop"] floating enable; border none
 
  # >>> Move plasma notifications to top right corner <<<
-    for_window [class="plasmashell" window_type="notification"] move position 1570 45 
+    for_window [class="plasmashell" window_type="notification"] move position 1570 45
+ # >>> Avoid tiling for non-Plasma stuff <<<
 
- # >>> Avoid tiling for non-Plasma stuff <<<       
-
-    for_window [window_role="pop-up"] floating enable     
-    for_window [window_role="bubble"] floating enable     
-    for_window [window_role="task_dialog"] floating enable     
-    for_window [window_role="Preferences"] floating enable     
-    for_window [window_role="About"] floating enable     
-    for_window [window_type="dialog"] floating enable     
-    for_window [window_type="menu"] floating enable         
-    for_window [class="usbguard-applet-qt" title="USB Device Inserted"] floating enable     
-    # for_window [class="(?i)VirtualBox" title="(?i)Manager"] floating enable     
-    # for_window [class="(?i)VirtualBox"] floating enable     
-    # for_window [class="(?i)blueman"] floating enable     
-    # for_window [class="(?i)qemu-system"] floating enable    
+    for_window [window_role="pop-up"] floating enable
+    for_window [window_role="bubble"] floating enable
+    for_window [window_role="task_dialog"] floating enable
+    for_window [window_role="Preferences"] floating enable
+    for_window [window_role="About"] floating enable
+    for_window [window_type="dialog"] floating enable
+    for_window [window_type="menu"] floating enable
+    for_window [class="usbguard-applet-qt" title="USB Device Inserted"] floating enable
+    # for_window [class="(?i)VirtualBox" title="(?i)Manager"] floating enable
+    # for_window [class="(?i)VirtualBox"] floating enable
+    # for_window [class="(?i)blueman"] floating enable
+    # for_window [class="(?i)qemu-system"] floating enable
     for_window [instance="__scratchpad"] floating enable
