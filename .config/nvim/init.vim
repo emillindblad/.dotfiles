@@ -9,7 +9,7 @@ let mapleader =","
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
 	silent !mkdir -p ~/.config/nvim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+
 	autocmd VimEnter * PlugInstall
 endif
 
@@ -18,10 +18,13 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview'
-"Plug 'jiangmiao/auto-pairs'
-"Plug 'ajh17/VimCompletesMe'
-Plug 'jschmold/sweet-dark.vim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'sirver/ultisnips'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'arcticicestudio/nord-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'slim-template/vim-slim'
+Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 " Vimtex settings
@@ -36,6 +39,17 @@ call plug#end()
     let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
     let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
+" deoplete
+    call deoplete#custom#var('omni', 'input_patterns', {
+        \ 'tex': g:vimtex#re#deoplete
+        \})
+    let g:deoplete#enable_at_startup = 1
+
+" lightline
+    let g:lightline = {
+          \ 'colorscheme': 'wombat',
+          \ }
+
 " Some basics
     filetype plugin indent on
     set tabstop=4
@@ -44,8 +58,45 @@ call plug#end()
     set expandtab
     set encoding=utf-8
     set number relativenumber
+    set pastetoggle=<F3>
     syntax enable
+    syntax on
     let g:livepreview_previewer = 'zathura'
+    setlocal spell
+    set spelllang=sv,en_us
+    set noshowmode
+
+" Theme and colors
+    set termguicolors
+    colorscheme nord
+    hi Normal guibg=NONE ctermbg=NONE
+    hi NonText ctermbg=NONE
+    hi NonText guibg=NONE
+    highlight clear SignColumn
+    augroup nord-theme-overrides
+        autocmd!
+        " Use 'nord7' as foreground color for Vim comment titles.
+        autocmd ColorScheme nord highlight vimCommentTitle ctermfg=14 guifg=#8FBCBB
+    augroup END
+    let g:nord_cursor_line_number_background = 1
+    let g:nord_italic_comments = 1
+    "if &term =~ '256color'
+        " disable Background Color Erase (BCE) so that color schemes
+        " render properly when inside 256-color tmux and GNU screen.
+        " see also http://sunaku.github.io/vim-256color-bce.html
+        "set t_ut=
+    "endif
+
+" Automatically deletes all trailing whitespace on save.
+	autocmd BufWritePre * %s/\s\+$//e
+
+" Run xrdb whenever Xdefaults or Xresources are updated.
+	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
+
+" Save file as sudo on files that require root permission
+	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+"---Keybindings---
 
 " NERDtree
     nmap <C-n> :NERDTreeToggle<CR>
@@ -60,21 +111,16 @@ call plug#end()
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
 
-" Theme and colors
-    "colorscheme sweet_dark
-    set termguicolors
-
- "autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
-
-" Automatically deletes all trailing whitespace on save.
-	autocmd BufWritePre * %s/\s\+$//e
-
 " Navigating with guides
 	inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 	vnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 	map <leader><leader> <Esc>/<++><Enter>"_c4l
 
-""""LATEX
+"Tab visual selection
+    "vnoremap <Tab> >gv
+    "vnoremap <S-tab> <gv
+
+"---LaTeX---
 	autocmd FileType tex inoremap ,eq \begin{equation}<Enter><Enter>\end{equation}<Esc>kA<Tab>
 	autocmd FileType tex inoremap ,fi \begin{fitch}<Enter><Enter>\end{fitch}<Enter><Enter><++><Esc>3kA
 	autocmd FileType tex inoremap ,exe \begin{exe}<Enter>\ex<Space><Enter>\end{exe}<Enter><Enter><++><Esc>3kA

@@ -20,12 +20,15 @@ endglobal
 snippet template "Basic template" b
 \documentclass[a4paper,12pt]{article}
 
+\usepackage{lipsum}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
-\usepackage[dutch]{babel}
+\usepackage[swedish, english]{babel}
 \usepackage{amsmath, amssymb}
-
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{mdframed}
 
 % figure support
 \usepackage{import}
@@ -39,10 +42,22 @@ snippet template "Basic template" b
 }
 
 \pdfsuppresswarningpagegroup=1
-
+\author{Emil Lindblad}
+\title{$1}
 \begin{document}
+\maketitle
 	$0
 \end{document}
+endsnippet
+
+snippet ! "Template" b
+\input{$HOME/Documents/latex/preamble.tex}
+\title{$1}
+\begin{document}
+\maketitle
+	$0
+\end{document}
+
 endsnippet
 
 snippet beg "begin{} / end{}" bA
@@ -123,13 +138,13 @@ endsnippet
 snippet dm "Math" wA
 \[
 ${1:${VISUAL}}
-.\] $0
+\] $0
 endsnippet
 
 snippet ali "Align" bA
 \begin{align*}
 	${1:${VISUAL}}
-.\end{align*}
+\end{align*}
 endsnippet
 
 
