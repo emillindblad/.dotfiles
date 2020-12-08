@@ -101,10 +101,10 @@ source $ZSH/oh-my-zsh.sh
 bindkey "\e[1~" beginning-of-line
 bindkey "\e[4~" end-of-line
 #
-# Example aliases
-alias vim="nvim"
-alias zshconfig="vim ~/.config/zsh/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
+# Aliases
+alias zshconfig="nvim ~/.config/zsh/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias weather="curl wttr.in"
 alias clock="tty-clock -scC 5"
-alias vimrc="nvim ~/.config/nvim/init.vim"
+alias vrc="nvim ~/.config/nvim/init.vim"
+alias v="nvim"

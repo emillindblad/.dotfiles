@@ -51,7 +51,7 @@ snippet template "Basic template" b
 endsnippet
 
 snippet ! "Template" b
-\input{$HOME/Documents/latex/preamble.tex}
+\input{/home/emil/Documents/latex/preamble.tex}
 \title{$1}
 \begin{document}
 \maketitle
@@ -113,12 +113,25 @@ snippet pac "Package" b
 \usepackage[${1:options}]{${2:package}}$0
 endsnippet
 
+snippet sec "Section" b
+\section{$1}
+	$0
+endsnippet
+
 snippet => "implies" Ai
 \implies
 endsnippet
 
 snippet =< "implied by" Ai
 \impliedby
+endsnippet
+
+snippet ul "underline" i
+\underline{$1} $0
+endsnippet
+
+snippet ub "underbrace" i
+\underbrace{$1}_{$2} $0
 endsnippet
 
 context "math()"

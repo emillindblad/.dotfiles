@@ -4,6 +4,8 @@ export PATH=$PATH:$HOME/.gem/ruby/2.7.0/bin
 # Default programs
 export EDITOR="nvim"
 export TERMINAL="konsole"
+export READER="zathura"
+export BROWSER="firefox"
 
 # Clean-up home
 export XDG_DATA_HOME="$HOME/.local/share"
