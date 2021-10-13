@@ -1,0 +1,243 @@
+"            _
+" _ ____   _(_)_ __ ___
+"| '_ \ \ / / | '_ ` _ \
+"| | | \ V /| | | | | | |
+"|_| |_|\_/ |_|_| |_| |_|
+
+let mapleader =" "
+
+if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+	echo "Downloading junegunn/vim-plug to manage plugins..."
+	silent !mkdir -p ~/.config/nvim/autoload/
+
+	autocmd VimEnter * PlugInstall
+endif
+
+call plug#begin('~/.config/nvim/plugged')
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+
+Plug 'lervag/vimtex'
+
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'sirver/ultisnips'
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'shaunsingh/nord.nvim'
+Plug 'gruvbox-community/gruvbox'
+
+Plug 'itchyny/lightline.vim'
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+
+" LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+
+"Telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+call plug#end()
+
+"------------ LSP configs ---------------
+" Everything in here will be interpreted as lua
+lua << EOF
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    update_in_insert = true,
+    })
+
+require('lspconfig').jedi_language_server.setup {--Python lsp
+    on_attach=require'completion'.on_attach
+}
+require('lspconfig').texlab.setup {--LaTeX lsp
+    on_attach=require'completion'.on_attach
+}
+require'lspconfig'.clangd.setup {-- c/cpp lsp
+    on_attach=require'completion'.on_attach,
+    cmd = { "clangd", "--background-index", "--clang-tidy" },
+    root_dir = function() return vim.loop.cwd() end
+}
+require'lspconfig'.java_language_server.setup{
+    on_attach=require'completion'.on_attach,
+    cmd = {"/home/emil/github/etc/java-language-server/dist/lang_server_linux.sh"}
+}
+-------------------Telescope-------------
+require("telescope").setup({
+    defaults = {
+        file_sorter = require("telescope.sorters").get_fzy_sorter,
+        prompt_prefix = " >",
+        color_devicons = true,
+
+        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+    },
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+        },
+    },
+})
+
+
+require("telescope").load_extension("fzy_native")
+
+--Tree sitter
+require'nvim-treesitter.configs'.setup { indent = { enable = true }, highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
+
+EOF
+
+set completeopt=menuone,noinsert,noselect
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_enable_snippet = 'UltiSnips'
+
+" LSP bindings
+nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader><CR> :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>vsd :lua vim.lsp.diagnostic.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <leader>vn :lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <leader>vll :call LspLocationList()<CR>
+
+" Telescope
+nnoremap <C-p> :lua require("telescope.builtin").git_files()<CR>
+nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
+
+" Vimtex settings
+    let g:vimtex_complier_progname = 'nvr'
+    let g:tex_flavor='latex'
+    let g:vimtex_view_method='zathura'
+    let g:vimtex_quickfix_mode=0
+    let g:vimtex_complete_enabled=1
+    let g:vimtex_complete_close_braces=1
+
+" UltiSnips
+    let g:UltiSnipsExpandTrigger = '<tab>'
+    let g:UltiSnipsJumpForwardTrigger = '<tab>'
+    let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+    let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
+
+" lightline
+    let g:lightline = {
+          \ 'colorscheme': 'wombat',
+          \ 'active': {
+          \   'left': [ [ 'mode', 'paste' ],
+          \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+          \ },
+          \ 'component_function': {
+          \   'gitbranch': 'FugitiveHead'
+          \ },
+          \ }
+" NERDtree
+    let NERDTreeShowHidden=1
+
+    let g:livepreview_previewer = 'zathura'
+
+
+" Some basics
+    filetype plugin indent on
+
+    set tabstop=4 softtabstop=4 "Tabs"
+    set shiftwidth=4
+    set expandtab
+    set smartindent
+
+    set scrolloff=8
+    set nocompatible
+    set encoding=utf-8
+    set number relativenumber
+    set pastetoggle=<F3>
+    setlocal spell
+    set spelllang=sv,en_us
+    set noshowmode
+    set nowrap "Text wont wrap"
+    set nohlsearch "Turn off highlight for search"
+    set hidden "Keep unsaved buffers open"
+    set signcolumn=yes "Dat LSP column"
+    set ignorecase "Better search"
+    set smartcase
+
+    syntax enable
+    syntax on
+
+" Theme and colors
+    set termguicolors
+    "let g:nord_contrast = v:true
+    let g:nord_disable_background = v:true
+    let g:nord_italic = v:false
+    colorscheme gruvbox
+
+    let g:gruvbox_contrast_dark = 'hard'
+    let g:gruvbox_invert_selection='0'
+
+    set background=dark
+
+    highlight ColorColumn ctermbg=0 guibg=grey
+    hi SignColumn guibg=none
+    hi CursorLineNR guibg=None
+    highlight Normal guibg=none
+    " highlight LineNr guifg=#ff8659
+    " highlight LineNr guifg=#aed75f
+    highlight LineNr guifg=#5eacd3
+    highlight netrwDir guifg=#5eacd3
+    highlight qfFileName guifg=#aed75f
+    hi TelescopeBorder guifg=#5eacd
+
+" Automatically deletes all trailing whitespace on save.
+	autocmd BufWritePre * %s/\s\+$//e
+
+" Run xrdb whenever Xdefaults or Xresources are updated.
+	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
+
+" Save file as sudo on files that require root permission
+	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+"---Keybindings---
+
+" Behave Vim
+    nnoremap Y y$
+
+" Keeping it centered
+    nnoremap n nzzzv
+    nnoremap N Nzzzv
+
+" NERDtree
+    nmap <C-n> :NERDTreeToggle<CR>
+
+" NERDcomment
+    vmap ++ <plug>NERDCommenterToggle
+    nmap ++ <plug>NERDCommenterToggle
+
+" Shortcutting split navigation, saving a keypress:
+	map <C-h> <C-w>h
+	map <C-j> <C-w>j
+	map <C-k> <C-w>k
+	map <C-l> <C-w>l
+
+" Tab visual selection
+    vnoremap > >gv
+    vnoremap < <gv
+
+" Tabs and spit
+    nnoremap <C-t> :tabnew<CR>
+    nnoremap <leader>n :tabn<CR>
+    nnoremap <leader>p :tabp<CR>
+
+" Compile and run with c and c++
+    au FileType c nnoremap <F8> :w<CR>:!gcc % -o %< && ./%< <CR>
+    au FileType cpp nnoremap <F8> :w<CR>:!g++ -o %< % && ./%< <CR>
+
+" VimtexCompile
+    au FileType tex nnoremap <F8> :VimtexCompile<CR>
