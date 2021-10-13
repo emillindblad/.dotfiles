@@ -147,22 +147,21 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
 # >>> Autostart <<<
 
-    # Launch polybar
-        exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+    # Launch polybar if you have it installed
+        #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
     # >>> Window titles font <<<
         font pango:sourcecodepro 10
 
-    # Wallpaper
+    # Wallpaper, put your own path to img here
         exec --no-startup-id feh --bg-scale /home/emil/Pictures/background.png --bg-scale /home/emil/Pictures/background.png
 
     # Compositor
-        exec --no-startup-id compton -Cb
+        exec --no-startup-id picom -Cb
 
-    # redshift
-        exec --no-startup-id redshift
 # >>> Gaps <<<
     gaps inner 7
     gaps outer 0
@@ -170,7 +169,7 @@ bindsym $mod+r mode "resize"
 
 # >>> Remove title bar and set border <<<
     smart_borders on
-    for_window [class="^.*"] border pixel 1
+    for_window [class="^.*"] border pixel 2
 
 # >>> Colors <<<
 #00BCD4
@@ -212,6 +211,8 @@ bindsym $mod+r mode "resize"
   }
 
 # >>> Plasma Integration <<<
+# Specific rules for plasma to work with i3
+
  # Try to kill the wallpaper set by Plasma (it takes up the entire workspace and hides everything)
     exec --no-startup-id wmctrl -c Plasma
     for_window [title="Desktop — Plasma"] kill; floating enable; border none
