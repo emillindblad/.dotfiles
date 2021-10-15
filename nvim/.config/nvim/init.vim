@@ -4,16 +4,16 @@
 "| | | \ V /| | | | | | |
 "|_| |_|\_/ |_|_| |_| |_|
 
-let mapleader =" "
+let mapleader = " "
 
-if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
-	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p ~/.config/nvim/autoload/
-
-	autocmd VimEnter * PlugInstall
+" Autodownload vim-plug if not installed
+if ! filereadable(expand('~/.local/share/nvim/site/autoload/plug.vim'))
+    echo "Downloading vim-plug to manage plugins..."
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
 endif
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 
