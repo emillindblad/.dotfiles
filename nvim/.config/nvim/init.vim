@@ -21,11 +21,9 @@ Plug 'lervag/vimtex'
 
 Plug 'jiangmiao/auto-pairs'
 
-Plug 'sirver/ultisnips'
 
 Plug 'tpope/vim-fugitive'
 
-Plug 'shaunsingh/nord.nvim'
 Plug 'gruvbox-community/gruvbox'
 
 Plug 'itchyny/lightline.vim'
@@ -38,7 +36,15 @@ Plug 'nvim-treesitter/playground'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+
+" Completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+
+" Snip snip
+Plug 'sirver/ultisnips'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
 "Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -50,25 +56,70 @@ call plug#end()
 "------------ LSP configs ---------------
 " Everything in here will be interpreted as lua
 lua << EOF
+
+-------------------Completion------------
+
+local cmp = require'cmp'
+
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            -- For `vsnip` user.
+            -- vim.fn["vsnip#anonymous"](args.body)
+
+            -- For `luasnip` user.
+            -- require('luasnip').lsp_expand(args.body)
+
+            -- For `ultisnips` user.
+             vim.fn["UltiSnips#Anon"](args.body)
+        end,
+    },
+    mapping = {
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+
+    sources = {
+        { name = 'nvim_lsp' },
+        -- For ultisnips user.
+        { name = 'ultisnips' },
+        { name = 'buffer' },
+    }
+})
+
+-------------------LSP servers------------------
+
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     update_in_insert = true,
     })
 
-require('lspconfig').jedi_language_server.setup {--Python lsp
-    on_attach=require'completion'.on_attach
-}
-require('lspconfig').texlab.setup {--LaTeX lsp
-    on_attach=require'completion'.on_attach
-}
-require'lspconfig'.clangd.setup {-- c/cpp lsp
-    on_attach=require'completion'.on_attach,
+local function config(_config)
+    return vim.tbl_deep_extend("force", {
+        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    }, _config or {})
+end
+
+--Python
+require('lspconfig').jedi_language_server.setup(config())
+
+--LaTeX
+require('lspconfig').texlab.setup(config())
+
+-- C/C++
+require'lspconfig'.clangd.setup(config({
     cmd = { "clangd", "--background-index", "--clang-tidy" },
     root_dir = function() return vim.loop.cwd() end
-}
-require'lspconfig'.java_language_server.setup{
-    on_attach=require'completion'.on_attach,
+}))
+
+--Javuh
+require'lspconfig'.java_language_server.setup(config({
     cmd = {"/home/emil/github/etc/java-language-server/dist/lang_server_linux.sh"}
-}
+}))
+
+
 -------------------Telescope-------------
 require("telescope").setup({
     defaults = {
@@ -92,12 +143,9 @@ require("telescope").load_extension("fzy_native")
 
 --Tree sitter
 require'nvim-treesitter.configs'.setup { indent = { enable = true }, highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
-
 EOF
 
-set completeopt=menuone,noinsert,noselect
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-let g:completion_enable_snippet = 'UltiSnips'
+set completeopt=menu,menuone,noselect
 
 " LSP bindings
 nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
@@ -107,7 +155,7 @@ nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader><CR> :lua vim.lsp.buf.code_action()<CR>
-nnoremap <leader>vsd :lua vim.lsp.diagnostic.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap <leader>vn :lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <leader>vll :call LspLocationList()<CR>
 
@@ -162,34 +210,31 @@ nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
     setlocal spell
     set spelllang=sv,en_us
     set noshowmode
-    set nowrap "Text wont wrap"
-    set nohlsearch "Turn off highlight for search"
-    set hidden "Keep unsaved buffers open"
-    set signcolumn=yes "Dat LSP column"
-    set ignorecase "Better search"
+    set nowrap "Text wont wrap
+    set nohlsearch "Turn off highlight for search
+    set incsearch "Incremental search
+    set hidden "Keep unsaved buffers open
+    set signcolumn=yes "Dat LSP column
+    set ignorecase "Better search
     set smartcase
 
     syntax enable
     syntax on
 
 " Theme and colors
-    set termguicolors
-    "let g:nord_contrast = v:true
-    let g:nord_disable_background = v:true
-    let g:nord_italic = v:false
     colorscheme gruvbox
 
     let g:gruvbox_contrast_dark = 'hard'
     let g:gruvbox_invert_selection='0'
-
+    set termguicolors
     set background=dark
 
     highlight ColorColumn ctermbg=0 guibg=grey
     hi SignColumn guibg=none
     hi CursorLineNR guibg=None
     highlight Normal guibg=none
-    " highlight LineNr guifg=#ff8659
-    " highlight LineNr guifg=#aed75f
+    "highlight LineNr guifg=#ff8659
+    "highlight LineNr guifg=#aed75f
     highlight LineNr guifg=#5eacd3
     highlight netrwDir guifg=#5eacd3
     highlight qfFileName guifg=#aed75f
@@ -205,6 +250,15 @@ nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
 	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 "---Keybindings---
+
+" Explore
+    nnoremap <leader>pv :Ex<CR>
+
+" Find and replace
+    nnoremap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+
+" Yeet Ex mode out of here
+    nnoremap <silent> Q <nop>
 
 " Behave Vim
     nnoremap Y y$
