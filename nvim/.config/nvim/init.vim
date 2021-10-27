@@ -13,6 +13,7 @@ if ! filereadable(expand('~/.local/share/nvim/site/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall
 endif
 
+" Define plugins
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
