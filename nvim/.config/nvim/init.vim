@@ -4,6 +4,7 @@
 "| | | \ V /| | | | | | |
 "|_| |_|\_/ |_|_| |_| |_|
 
+" Set leader key
 let mapleader = " "
 
 " Autodownload vim-plug if not installed
@@ -144,7 +145,9 @@ require("telescope").load_extension("fzy_native")
 
 --Tree sitter
 require'nvim-treesitter.configs'.setup { indent = { enable = true }, highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
+
 EOF
+"End of Lua block
 
 set completeopt=menu,menuone,noselect
 
@@ -195,29 +198,27 @@ nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
     let g:livepreview_previewer = 'zathura'
 
 
-" Some basics
     filetype plugin indent on
 
-    set tabstop=4 softtabstop=4 "Tabs"
-    set shiftwidth=4
-    set expandtab
-    set smartindent
-
-    set scrolloff=8
+    set tabstop=4 softtabstop=4     "Set tab to equal 4 spaces
+    set shiftwidth=4                "Set spaces for auto indent
+    set expandtab                   "Use spaces instead of tabs
+    set smartindent                 "Auto indentation
+    set scrolloff=8                 "Window start scrolling when 8 row from bottom/top
     set nocompatible
-    set encoding=utf-8
-    set number relativenumber
-    set pastetoggle=<F3>
-    setlocal spell
-    set spelllang=sv,en_us
-    set noshowmode
-    set nowrap "Text wont wrap
-    set nohlsearch "Turn off highlight for search
-    set incsearch "Incremental search
-    set hidden "Keep unsaved buffers open
-    set signcolumn=yes "Dat LSP column
-    set ignorecase "Better search
-    set smartcase
+    set encoding=utf-8              "Encoding
+    set number relativenumber       "Line numbers are shown relative to current line
+    set pastetoggle=<F3>            "Toggle past mode
+    setlocal spell                  "Enable spell check
+    set spelllang=sv,en_us          "Set spell check to sv and eng
+    set noshowmode                  "Dont show current mode (Shown by lightline instead)
+    set nowrap                      "Text wont wrap
+    set nohlsearch                  "Turn off highlight for search
+    set incsearch                   "Incremental search
+    set hidden                      "Keep unsaved buffers open
+    set signcolumn=yes              "Dat LSP column
+    set ignorecase                  "Better search
+    set smartcase                   "Being able to choose case sensitivity in searches
 
     syntax enable
     syntax on
@@ -249,8 +250,6 @@ nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
 
 " Save file as sudo on files that require root permission
 	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
-
-"---Keybindings---
 
 " Explore
     nnoremap <leader>pv :Ex<CR>
@@ -294,5 +293,8 @@ nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
     au FileType c nnoremap <F8> :w<CR>:!gcc % -o %< && ./%< <CR>
     au FileType cpp nnoremap <F8> :w<CR>:!g++ -o %< % && ./%< <CR>
 
-" VimtexCompile
+" Complie and view LaTeX with VimTeX
     au FileType tex nnoremap <F8> :VimtexCompile<CR>
+
+" View markdown with MarkdownPreview
+    au FileType markdown nnoremap <F8> :MarkdownPreview<CR>
