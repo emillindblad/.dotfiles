@@ -1,54 +1,34 @@
+#global !p
+#texMathZones = ['texMathZone' + x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z', 'AmsA', 'AmsB', 'AmsC', 'AmsD', 'AmsE', 'AmsF', 'AmsG', 'AmsAS', 'AmsBS', 'AmsCS', 'AmsDS', 'AmsES', 'AmsFS', 'AmsGS' ]]
+
+#texIgnoreMathZones = ['texMathText']
+
+#texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+#texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+
+#ignore = texIgnoreMathZoneIds[0]
+
+#def math():
+	#synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+	#try:
+		#first = next(i for i in reversed(synstackids) if i in texIgnoreMathZoneIds or i in texMathZoneIds)
+		#return first != ignore
+	#except StopIteration:
+		#return False
+#endglobal
+
 global !p
-texMathZones = ['texMathZone' + x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z', 'AmsA', 'AmsB', 'AmsC', 'AmsD', 'AmsE', 'AmsF', 'AmsG', 'AmsAS', 'AmsBS', 'AmsCS', 'AmsDS', 'AmsES', 'AmsFS', 'AmsGS' ]]
-
-texIgnoreMathZones = ['texMathText']
-
-texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
-texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
-
-ignore = texIgnoreMathZoneIds[0]
-
 def math():
-	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
-	try:
-		first = next(i for i in reversed(synstackids) if i in texIgnoreMathZoneIds or i in texMathZoneIds)
-		return first != ignore
-	except StopIteration:
-		return False
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment():
+	return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')")
+	return x != '0' and y != '0'
+
 endglobal
-
-snippet template "Basic template" b
-\documentclass[a4paper,12pt]{article}
-
-\usepackage{lipsum}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{textcomp}
-\usepackage[swedish, english]{babel}
-\usepackage{amsmath, amssymb}
-\usepackage{upgreek}
-\usepackage{graphicx}
-\usepackage{mdframed}
-
-% figure support
-\usepackage{import}
-\usepackage{xifthen}
-\pdfminorversion=7
-\usepackage{pdfpages}
-\usepackage{transparent}
-\newcommand{\incfig}[1]{%
-	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
-}
-
-\pdfsuppresswarningpagegroup=1
-\author{Emil Lindblad}
-\title{$1}
-\begin{document}
-\maketitle
-	$0
-\end{document}
-endsnippet
 
 snippet ! "Template" b
 \input{/home/emil/Documents/latex/preamble.tex}
