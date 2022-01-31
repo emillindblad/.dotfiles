@@ -10,7 +10,7 @@ CursorShape=0
 UseCustomCursorColor=true
 
 [General]
-Name=Breath2
+Name=Nice
 Parent=FALLBACK/
 TerminalCenter=true
 TerminalMargin=10
