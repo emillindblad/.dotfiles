@@ -71,6 +71,15 @@ snippet fig "Figure environment" b
 \end{figure}
 endsnippet
 
+snippet cblock "Code block" bA
+\begin{mdframed}
+\begin{lstlisting}
+$1
+\end{lstlisting}
+\end{mdframed}
+endsnippet
+
+
 snippet enum "Enumerate" bA
 \begin{enumerate}
 	\item $0
@@ -95,6 +104,16 @@ endsnippet
 
 snippet sec "Section" b
 \section{$1}
+	$0
+endsnippet
+
+snippet ssec "SubSection" b
+\subsection{$1}
+	$0
+endsnippet
+
+snippet sssec "SubSubSection" b
+\subsubsection{$1}
 	$0
 endsnippet
 

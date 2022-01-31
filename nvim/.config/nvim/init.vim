@@ -121,6 +121,9 @@ require'lspconfig'.java_language_server.setup(config({
     cmd = {"/home/emil/github/etc/java-language-server/dist/lang_server_linux.sh"}
 }))
 
+--SQL
+require'lspconfig'.sqlls.setup(config())
+
 
 -------------------Telescope-------------
 require("telescope").setup({
@@ -262,6 +265,10 @@ nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
 
 " Behave Vim
     nnoremap Y y$
+
+" Yank to the clipboard
+    nnoremap <leader>y "+y
+    vnoremap <leader>y "+y
 
 " Keeping it centered
     nnoremap n nzzzv
