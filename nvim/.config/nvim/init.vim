@@ -270,6 +270,9 @@ nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
     nnoremap <leader>y "+y
     vnoremap <leader>y "+y
 
+    nnoremap <leader>Y "+y$
+    vnoremap <leader>Y "+y$
+
 " Keeping it centered
     nnoremap n nzzzv
     nnoremap N Nzzzv
