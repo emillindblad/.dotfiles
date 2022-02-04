@@ -255,8 +255,11 @@ bindsym $mod+r mode "resize"
  # >>> Move plasma notifications to top right corner <<<
     for_window [class="plasmashell" window_type="notification"] move position 1570 45
 
- # Dont focus plasma notifications
+ # Don't focus plasma notifications
     no_focus [class="plasmashell" window_type="notification"]
+
+ # Don't focus IntelliJ Code with me
+    no_focus [class="jetbrains-code-with-me-guest"]
 
  # >>> Avoid tiling for non-Plasma stuff <<<
 

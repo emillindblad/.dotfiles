@@ -300,6 +300,7 @@ snippet conj "conjugate" iA
 \overline{$1}$0
 endsnippet
 
+context "math()"
 snippet sum "sum" w
 \sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
 endsnippet
@@ -521,10 +522,10 @@ snippet compl "complement" iA
 ^{c}
 endsnippet
 
-context "math()"
-snippet \\\ "setminus" iA
-\setminus
-endsnippet
+#context "math()"
+#snippet \\\ "setminus" iA
+#\setminus
+#endsnippet
 
 snippet >> ">>" iA
 \gg
@@ -650,6 +651,17 @@ priority 100
 context "math()"
 snippet "([a-zA-Z])bar" "bar" riA
 \overline{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 1000
+context "math()"
+snippet "jhat" "jhat" riA
+\hat{\jmath}$0
+endsnippet
+
+context "math()"
+snippet "ihat" "ihat" riA
+\hat{\imath}$0
 endsnippet
 
 priority 10
