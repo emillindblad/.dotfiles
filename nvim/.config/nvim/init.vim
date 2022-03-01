@@ -55,6 +55,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 call plug#end()
 
+
 "------------ LSP configs ---------------
 " Everything in here will be interpreted as lua
 lua << EOF
@@ -162,7 +163,7 @@ nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader><CR> :lua vim.lsp.buf.code_action()<CR>
-nnoremap <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <leader>sd :lua vim.diagnostic.get()<CR>
 nnoremap <leader>vn :lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <leader>vll :call LspLocationList()<CR>
 
@@ -300,8 +301,10 @@ nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
     au FileType c nnoremap <F8> :w<CR>:!gcc % -o %< && ./%< <CR>
     au FileType cpp nnoremap <F8> :w<CR>:!g++ -o %< % && ./%< <CR>
 
-" Complie and view LaTeX with VimTeX
-    au FileType tex nnoremap <F8> :VimtexCompile<CR>
 
 " View markdown with MarkdownPreview
     au FileType markdown nnoremap <F8> :MarkdownPreview<CR>
+
+" Complie and view LaTeX with VimTeX
+    nnoremap <F8> <nop>
+    au FileType tex nnoremap <F8> :VimtexCompile<CR>
