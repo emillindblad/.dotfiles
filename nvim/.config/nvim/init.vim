@@ -53,6 +53,9 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+" vim-dispatch
+Plug 'tpope/vim-dispatch'
 call plug#end()
 
 
@@ -307,6 +310,13 @@ nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
 
 " View markdown with MarkdownPreview
     au FileType markdown nnoremap <F8> :MarkdownPreview<CR>
+
+    function! g:Open_browser(url)
+        exec "Start! firefox --new-window " . a:url
+        " Alternatively, without vim-dispatch
+        "silent exec "firefox --new-window " . a:url . " &"
+    endfunction
+    let g:mkdp_browserfunc = 'g:Open_browser'
 
 " Complie and view LaTeX with VimTeX
     nnoremap <F8> <nop>
