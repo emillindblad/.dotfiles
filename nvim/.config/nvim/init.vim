@@ -38,6 +38,7 @@ Plug 'nvim-treesitter/playground'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -56,13 +57,15 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 " vim-dispatch
 Plug 'tpope/vim-dispatch'
+
 call plug#end()
 
 
 "------------ LSP configs ---------------
 " Everything in here will be interpreted as lua
 lua << EOF
-
+---Lsp installer---
+require("nvim-lsp-installer").setup {}
 -------------------Completion------------
 
 local cmp = require'cmp'
@@ -80,20 +83,19 @@ cmp.setup({
              vim.fn["UltiSnips#Anon"](args.body)
         end,
     },
-    mapping = {
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    },
-
-    sources = {
-        { name = 'nvim_lsp' },
-        -- For ultisnips user.
-        { name = 'ultisnips' },
-        { name = 'buffer' },
-    }
+    mapping = cmp.mapping.preset.insert({
+      ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-d>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'ultisnips' }, -- For ultisnips users.
+    }, {
+      { name = 'buffer' },
+    })
 })
 
 -------------------LSP servers------------------
@@ -127,6 +129,21 @@ require'lspconfig'.java_language_server.setup(config({
 
 --SQL
 require'lspconfig'.sqlls.setup(config())
+
+--cssls
+--Enable (broadcasting) snippet capability for completion
+--local capabilities = vim.lsp.protocol.make_client_capabilities()
+--capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.cssls.setup {
+  capabilities = capabilities,
+}
+
+--html
+require'lspconfig'.html.setup {
+  capabilities = capabilities,
+  filetypes= {"html","htmldjango"}
+}
 
 
 -------------------Telescope-------------
