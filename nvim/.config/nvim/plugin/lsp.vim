@@ -5,6 +5,6 @@ nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader><CR> :lua vim.lsp.buf.code_action()<CR>
-nnoremap <leader>sd :lua vim.diagnostic.get()<CR>
-nnoremap <leader>vn :lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <leader>sd :lua vim.diagnostic.open_float()<CR>
+nnoremap <leader>vn :lua vim.diagnostic.goto_next()<CR>
 nnoremap <leader>vll :call LspLocationList()<CR>
