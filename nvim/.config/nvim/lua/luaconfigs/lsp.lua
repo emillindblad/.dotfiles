@@ -44,3 +44,6 @@ require'lspconfig'.html.setup {
   capabilities = capabilities,
   filetypes= {"html","htmldjango"}
 }
+
+--tsserver
+require("lspconfig").tsserver.setup(config())
