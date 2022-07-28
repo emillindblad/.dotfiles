@@ -1,5 +1,7 @@
 require("nvim-lsp-installer").setup {}
 
+local util = require 'lspconfig.util'
+
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     update_in_insert = true,
     })
@@ -28,7 +30,9 @@ require'lspconfig'.java_language_server.setup(config({
 }))
 
 --SQL
-require'lspconfig'.sqlls.setup(config())
+require'lspconfig'.sqlls.setup(config({
+    root_dir = util.root_pattern '.sqllsrc.json'
+}))
 
 --cssls
 --Enable (broadcasting) snippet capability for completion

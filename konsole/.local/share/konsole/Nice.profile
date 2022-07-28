@@ -13,7 +13,7 @@ UseCustomCursorColor=true
 Name=Nice
 Parent=FALLBACK/
 TerminalCenter=true
-TerminalMargin=10
+TerminalMargin=5
 
 [Scrolling]
 HistoryMode=2
