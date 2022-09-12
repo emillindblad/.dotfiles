@@ -13,10 +13,12 @@ UseCustomCursorColor=true
 Name=Nice
 Parent=FALLBACK/
 TerminalCenter=true
-TerminalMargin=5
+TerminalMargin=10
 
 [Scrolling]
+HighlightScrolledLines=false
 HistoryMode=2
+ReflowLines=true
 ScrollBarPosition=2
 
 [Terminal Features]

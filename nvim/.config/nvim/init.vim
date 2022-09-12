@@ -89,11 +89,11 @@ lua require("luaconfigs")
     nnoremap N Nzzzv
 
 " NERDtree
-    nmap <C-n> :NERDTreeToggle<CR>
+    nnoremap <C-n> :NERDTreeToggle<CR>
 
 " NERDcomment
-    vmap ++ <plug>NERDCommenterToggle
-    nmap ++ <plug>NERDCommenterToggle
+    vnoremap ++ <plug>NERDCommenterToggle
+    nnoremap ++ <plug>NERDCommenterToggle
 
 " Tab visual selection
     vnoremap > >gv
@@ -122,3 +122,4 @@ lua require("luaconfigs")
 " Complie and view LaTeX with VimTeX
     nnoremap <F8> <nop>
     au FileType tex nnoremap <F8> :VimtexCompile<CR>
+
