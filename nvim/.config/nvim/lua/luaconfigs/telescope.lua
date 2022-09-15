@@ -12,16 +12,21 @@ require("telescope").setup({
             override_generic_sorter = false,
             override_file_sorter = true,
         },
+        media_files = {
+            filetypes = {"png", "webp", "jpg", "jpeg"},
+            find_cmd = "rg",
+        }
     },
 })
 
 require("telescope").load_extension("fzy_native")
+require("telescope").load_extension("media_files")
 
 local M = {}
 
 M.search_dotfiles = function()
 	require("telescope.builtin").find_files({
-		prompt_title = "< VimRC >",
+		prompt_title = " Dot files ",
 		cwd = "$HOME/.dotfiles",
 		hidden = true,
 	})
