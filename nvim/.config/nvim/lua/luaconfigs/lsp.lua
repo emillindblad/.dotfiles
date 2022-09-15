@@ -51,3 +51,6 @@ require'lspconfig'.html.setup {
 
 --tsserver
 require("lspconfig").tsserver.setup(config())
+
+--tailwind
+require'lspconfig'.tailwindcss.setup(config())
