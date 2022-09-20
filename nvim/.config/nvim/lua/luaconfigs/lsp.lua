@@ -25,9 +25,10 @@ require'lspconfig'.clangd.setup(config({
 }))
 
 --Javuh
-require'lspconfig'.java_language_server.setup(config({
-    cmd = {"/home/emil/github/etc/java-language-server/dist/lang_server_linux.sh"}
-}))
+--require'lspconfig'.java_language_server.setup(config({
+    --cmd = {"/home/emil/github/etc/java-language-server/dist/lang_server_linux.sh"}
+--}))
+require'lspconfig'.jdtls.setup(config())
 
 --SQL
 require'lspconfig'.sqlls.setup(config({
