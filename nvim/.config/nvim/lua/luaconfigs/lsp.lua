@@ -40,9 +40,9 @@ require'lspconfig'.sqlls.setup(config({
 --local capabilities = vim.lsp.protocol.make_client_capabilities()
 --capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require'lspconfig'.cssls.setup {
-  capabilities = capabilities,
-}
+--require'lspconfig'.cssls.setup {
+  --capabilities = capabilities,
+--}
 
 --html
 require'lspconfig'.html.setup {
