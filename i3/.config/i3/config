@@ -26,6 +26,7 @@ bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
 bindsym $mod+d exec rofi -show drun
+bindsym $mod+Tab exec rofi -show window
 bindsym $mod+Shift+d exec $BROWSER
 
 # change focus
@@ -35,6 +36,7 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
+# no you cant
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -95,7 +97,7 @@ set $ws9 "9"
 set $ws10 "10"
 
 workspace $ws1 output DP-0
-workspace $ws9 output DVI-D-0
+workspace $ws9 output DP-2
 workspace $ws10 output HDMI-0
 
 # switch to workspace
