@@ -60,7 +60,7 @@ font-3 = FontAwesome:style=Regular:pixelsize=11;1
 
 modules-left = powermenu i3 xwindow
 modules-center = date
-modules-right = backlight memory cpu temperature eth battery pulseaudio
+modules-right = backlight memory cpu temperature templaptop wlan eth battery pulseaudio
 
 tray-position = right
 tray-padding = 2
@@ -159,41 +159,12 @@ label-urgent-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 25
-label-song-ellipsis = true
-
 
 [module/backlight]
 type = internal/backlight
 card = amdgpu_bl0
 format = <label>
 label =  %percentage%%
-
-;bar-width = 10
-;bar-indicator = |
-;bar-indicator-foreground = #fff
-;bar-indicator-font = 2
-;bar-fill = ─
-;bar-fill-font = 2
-;bar-fill-foreground = #9f78e1
-;bar-empty = ─
-;bar-empty-font = 2
-;bar-empty-foreground = ${colors.foreground-alt}
-
-;[module/backlight-acpi]
-;inherit = module/xbacklight
-;type = internal/backlight
-;card = amdgpu_bl0
 
 [module/cpu]
 type = internal/cpu
@@ -380,6 +351,26 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
+[module/templaptop]
+type = internal/temperature
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon4/temp1_input
+thermal-zone = 0
+warn-temperature = 75
+
+format = <ramp> <label>
+;format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+;format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
 [module/powermenu]
 type = custom/menu
 
@@ -397,12 +388,18 @@ label-separator-foreground = ${colors.foreground-alt}
 
 menu-0-0 = Power off
 menu-0-0-exec = menu-open-2
-menu-0-1 = Reboot
-menu-0-1-exec = menu-open-1
-menu-0-2 = Log out
-menu-0-2-exec = menu-open-3
-menu-0-3 = Screen off
-menu-0-3-exec = menu-open-4
+
+menu-0-1 = Hibernate
+menu-0-1-exec = menu-open-4
+
+menu-0-2 = Reboot
+menu-0-2-exec = menu-open-1
+
+menu-0-3 = Log out
+menu-0-3-exec = menu-open-3
+
+menu-0-4 = Screen off
+menu-0-4-exec = menu-open-5
 
 menu-1-0 = Reboot
 menu-1-0-exec = reboot
@@ -419,10 +416,15 @@ menu-3-0-exec = loginctl terminate-user emil
 menu-3-1 = Cancel
 menu-3-1-exec = menu-open-0
 
-menu-4-0 = Screen off
-menu-4-0-exec = screenoff
+menu-4-0 = Hibernate
+menu-4-0-exec = systemctl hibernate
 menu-4-1 = Cancel
 menu-4-1-exec = menu-open-0
+
+menu-5-0 = Screen off
+menu-5-0-exec = screenoff
+menu-5-1 = Cancel
+menu-5-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true
