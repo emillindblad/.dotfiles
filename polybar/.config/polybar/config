@@ -178,12 +178,14 @@ label = %percentage:2%%
 type = custom/script
 interval = 5
 exec = /home/emil/.local/bin/polybar-gpu/nvidia-smi-util
+exec-if = nvidia-smi
 format-prefix = " "
 format-suffix = "%"
 
 [module/gputemperature]
 type = custom/script
 exec = /home/emil/.local/bin/polybar-gpu/nvidia-smi-temperature
+exec-if = nvidia-smi
 interval = 5
 format-prefix = " "
 format-suffix = "°C"
