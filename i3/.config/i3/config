@@ -256,8 +256,8 @@ bindsym $mod+r mode "resize"
 
  # >>> Move plasma notifications to bottom left corner on second screen <<<
     for_window [class="plasmashell" window_type="notification"] move container to output DP-2
-    for_window [class="plasmashell" window_type="notification"] move down 460
-    for_window [class="plasmashell" window_type="notification"] move left 770
+    for_window [class="plasmashell" window_type="notification"] move down 450
+    for_window [class="plasmashell" window_type="notification"] move left 760
 
  # Don't focus plasma notifications
     no_focus [class="plasmashell" window_type="notification"]
