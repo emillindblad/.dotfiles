@@ -17,6 +17,7 @@ call plug#begin(stdpath('data') . '/plugged')
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter-context'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
