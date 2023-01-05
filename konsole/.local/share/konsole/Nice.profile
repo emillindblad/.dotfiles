@@ -2,8 +2,10 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Nordic
+EmojiFont=Noto Color Emoji,11,-1,5,50,0,0,0,0,0
 Font=Source Code Pro,11,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=false
+WordMode=false
 
 [Cursor Options]
 CursorShape=0
