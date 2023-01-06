@@ -8,8 +8,8 @@ set scrolloff=8                         "Window start scrolling when 8 row from 
 set encoding=utf-8                      "Encoding
 set number relativenumber               "Line numbers are shown relative to current line
 set pastetoggle=<F3>                    "Toggle past mode
-setlocal spell                          "Enable spell check
-set spelllang=sv,en_us                  "Set spell check to sv and eng
+"setlocal spell                          "Enable spell check
+"set spelllang=sv,en_us                  "Set spell check to sv and eng
 set noshowmode                          "Dont show current mode (Shown by lightline instead)
 set nowrap                              "Text wont wrap
 set nohlsearch                          "Turn off highlight for search
