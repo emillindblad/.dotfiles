@@ -27,6 +27,7 @@ Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 
 " Snip snip
 Plug 'sirver/ultisnips'
@@ -44,7 +45,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'lervag/vimtex'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
-Plug 'gruvbox-community/gruvbox'
+"Plug 'gruvbox-community/gruvbox'
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'tpope/vim-dispatch'
@@ -121,7 +123,9 @@ lua require("luaconfigs")
     endfunction
     let g:mkdp_browserfunc = 'g:Open_browser'
 
-" Complie and view LaTeX with VimTeX
+" Compile and view LaTeX with VimTeX
     nnoremap <F8> <nop>
     au FileType tex nnoremap <F8> :VimtexCompile<CR>
+    au FileType tex setlocal spell                          "Enable spell check
+    au FileType tex set spelllang=sv,en_us                  "Set spell check to sv and eng
 
