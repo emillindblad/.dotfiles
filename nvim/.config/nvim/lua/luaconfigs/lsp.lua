@@ -25,10 +25,14 @@ require'lspconfig'.clangd.setup(config({
 }))
 
 --Javuh
---require'lspconfig'.java_language_server.setup(config({
-    --cmd = {"/home/emil/github/etc/java-language-server/dist/lang_server_linux.sh"}
---}))
-require'lspconfig'.jdtls.setup(config())
+local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+local workspace_dir = '/home/emil/.local/share/nvim/lsp_servers/jdtls/bin/workspace/' .. project_name
+require'lspconfig'.jdtls.setup{
+    cmd = {
+        'java',
+        '-data', workspace_dir
+    },
+}
 
 --SQL
 require'lspconfig'.sqlls.setup(config({
