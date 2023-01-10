@@ -45,7 +45,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'lervag/vimtex'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
-"Plug 'gruvbox-community/gruvbox'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -93,7 +92,7 @@ lua require("luaconfigs")
     nnoremap N Nzzzv
 
 " NERDtree
-    nnoremap <C-n> :NERDTreeToggle<CR>
+    nnoremap <C-n> :Vexplore><CR>
 
 " NERDcomment
     vnoremap ++ <plug>NERDCommenterToggle
@@ -103,10 +102,13 @@ lua require("luaconfigs")
     vnoremap > >gv
     vnoremap < <gv
 
-" Tabs and spit
+" Tabs
     nnoremap <C-t> :tabnew<CR>
-    nnoremap <leader>n :tabn<CR>
-    nnoremap <leader>p :tabp<CR>
+" Quickfix window
+
+    nnoremap <leader>q :cclose<CR>
+    nnoremap <C-j> :cnext<CR>zz
+    nnoremap <C-k> :cprev<CR>zz
 
 " Compile and run with c and c++
     au FileType c nnoremap <F8> :w<CR>:!gcc % -o %< && ./%< <CR>
