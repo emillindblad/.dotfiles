@@ -178,6 +178,8 @@ bindsym $mod+r mode "resize"
         exec discord
 	    assign [class=discord] $ws9
 
+        exec signal-desktop --use-tray-icon
+
     # start keepassxc
         exec keepassxc
 	    assign [class=keepassxc] $ws10

@@ -13,7 +13,7 @@ local function config(_config)
 end
 
 --Python
-require('lspconfig').jedi_language_server.setup(config())
+require('lspconfig').pyright.setup{}
 
 --LaTeX
 require('lspconfig').texlab.setup(config())
@@ -47,12 +47,6 @@ require'lspconfig'.sqlls.setup(config({
 --require'lspconfig'.cssls.setup {
   --capabilities = capabilities,
 --}
-
---html
-require'lspconfig'.html.setup {
-  capabilities = capabilities,
-  filetypes= {"html","htmldjango"}
-}
 
 --tsserver
 require("lspconfig").tsserver.setup(config())
