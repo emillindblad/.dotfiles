@@ -1,7 +1,7 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=Nordic
+ColorScheme=Gruvbox
 EmojiFont=Noto Color Emoji,11,-1,5,50,0,0,0,0,0
 Font=Source Code Pro,11,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=false
