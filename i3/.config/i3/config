@@ -20,6 +20,8 @@ bindsym $mod+Return exec konsole
 bindsym $mod+Shift+Return exec scratchpad
 for_window [class="uxterm" class="text_scratchpad"] floating enable resize set 599 400 sticky enable
 
+# emoji picker
+bindsym $mod+period exec emoji-picker
 
 # kill focused window
 bindsym $mod+Shift+q kill

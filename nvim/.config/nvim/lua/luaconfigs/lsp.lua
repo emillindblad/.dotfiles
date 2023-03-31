@@ -69,3 +69,6 @@ require'lspconfig'.emmet_ls.setup(config({
       },
     }
 }))
+
+--rust
+require('lspconfig').rust_analyzer.setup{}
