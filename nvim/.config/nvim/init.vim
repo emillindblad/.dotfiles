@@ -49,6 +49,7 @@ Plug 'ellisonleao/gruvbox.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'tpope/vim-dispatch'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
