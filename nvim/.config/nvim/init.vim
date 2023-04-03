@@ -130,5 +130,6 @@ lua require("luaconfigs")
     au FileType tex nnoremap <F8> :VimtexCompile<CR>
     au FileType tex setlocal spell                          "Enable spell check
     au FileType tex set spelllang=sv,en_us                  "Set spell check to sv and eng
+    au FileType markdown setlocal spell                          "Enable spell check
     au FileType markdown set spelllang=sv,en_us                  "Set spell check to sv and eng
 
