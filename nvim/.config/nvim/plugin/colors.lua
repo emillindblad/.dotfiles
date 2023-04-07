@@ -14,6 +14,7 @@ require("gruvbox").setup({
         netrwDir = {fg = "#83a598"},
         TelescopeBorder = {fg = "#83a598"},
         qfFileName = {fg = "#aed75f"},
+        NormalFloat = { bg = "#504945"},
     },
 })
 

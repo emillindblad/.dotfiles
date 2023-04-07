@@ -49,6 +49,7 @@ Plug 'ellisonleao/gruvbox.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'tpope/vim-dispatch'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -131,5 +132,6 @@ lua require("luaconfigs")
     au FileType tex nnoremap <F8> :VimtexCompile<CR>
     au FileType tex setlocal spell                          "Enable spell check
     au FileType tex set spelllang=sv,en_us                  "Set spell check to sv and eng
+    au FileType markdown setlocal spell                          "Enable spell check
     au FileType markdown set spelllang=sv,en_us                  "Set spell check to sv and eng
 

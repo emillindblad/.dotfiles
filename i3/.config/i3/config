@@ -241,6 +241,7 @@ bindsym $mod+r mode "resize"
  # Try to kill the wallpaper set by Plasma (it takes up the entire workspace and hides everything)
     exec --no-startup-id wmctrl -c Plasma
     for_window [title="Desktop — Plasma"] kill; floating enable; border none
+    for_window [title="Desktop @ QRect"] kill; floating enable; border none
 
 
 # >>> Window rules <<<

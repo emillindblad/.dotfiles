@@ -22,6 +22,9 @@ Restart=on-failure
 4. Enable the new unit:\
     `systemctl --user enable plasma-custom-wm.service`
 
+If you want to go back to KWin, unmask `plasma-kwin_x11.service` and disable
+`plasma-custom-wm.service`.
+
 ## Old method, deprecated since KDE 5.25!
 1. Install i3-gaps, feh and picom with your package manager.
 2. Clone this repo to a folder of your choice.
