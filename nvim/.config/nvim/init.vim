@@ -124,6 +124,7 @@ lua require("luaconfigs")
         "silent exec "firefox --new-window " . a:url . " &"
     endfunction
     let g:mkdp_browserfunc = 'g:Open_browser'
+    let g:mkdp_auto_close = 0
 
 " Compile and view LaTeX with VimTeX
     nnoremap <F8> <nop>
