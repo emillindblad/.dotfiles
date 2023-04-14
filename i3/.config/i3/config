@@ -161,6 +161,7 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
 # >>> Autostart <<<
 
     # Launch polybar
@@ -180,7 +181,9 @@ bindsym $mod+r mode "resize"
         exec discord
 	    assign [class=discord] $ws9
 
+    # start signal
         exec signal-desktop --use-tray-icon
+	    assign [class=signal] $ws9
 
     # start keepassxc
         exec keepassxc
@@ -190,7 +193,7 @@ bindsym $mod+r mode "resize"
     gaps inner 7
     gaps outer 0
   # smart_gaps on
-  #
+
 # >>> Window titles font <<<
         font pango:sourcecodepro 10
 
