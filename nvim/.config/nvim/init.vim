@@ -21,7 +21,8 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
+Plug 'williamboman/mason.nvim', { 'do': ':MasonUpdate' }
+Plug 'williamboman/mason-lspconfig.nvim'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'

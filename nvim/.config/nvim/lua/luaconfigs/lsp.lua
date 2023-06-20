@@ -1,4 +1,7 @@
-require("nvim-lsp-installer").setup {}
+require("mason").setup()
+require("mason-lspconfig").setup {
+    ensure_installed = { "pyright", "texlab", "clangd", "jdtls", "tsserver", "tailwindcss", "eslint", "emmet_ls", "rust_analyzer" }
+}
 
 local util = require 'lspconfig.util'
 
