@@ -29,6 +29,7 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'onsails/lspkind.nvim'
 
 " Snip snip
 Plug 'sirver/ultisnips'
