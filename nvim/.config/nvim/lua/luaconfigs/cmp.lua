@@ -27,14 +27,17 @@ cmp.setup {
         end,
     },
 
-    formating = {
+    formatting = {
         format = lspkind.cmp_format {
-            with_text = true,
+            mode = "symbol_text",
+            maxwidth = 35,
+            ellipsis_char = '...',
             menu = {
-                buffer = "[buf]",
+                buffer = "[Buf]",
                 nvim_lsp = "[LSP]",
-                path = "[path]",
-                ultisnips = "[snip]",
+                ultisnips = "[Snip]",
+                latex_symbols = "[LaTeX]",
+                path = "[Path]",
             },
         },
     },
