@@ -57,7 +57,7 @@ Plug 'lervag/vimtex'
 Plug 'tpope/vim-fugitive'
 
 Plug 'scrooloose/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
 
 Plug 'tpope/vim-dispatch'
 Plug 'mbbill/undotree'

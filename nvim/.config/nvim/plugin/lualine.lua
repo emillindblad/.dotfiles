@@ -45,11 +45,7 @@ require('lualine').setup {
     },
     sections = {
         lualine_b = {
-            'branch',
-            {
-                'diagnostics'
-            }
-        },
+            'branch', 'diagnostics' },
         lualine_c = {
             {
                 'filename',
