@@ -35,26 +35,33 @@ Plug 'onsails/lspkind.nvim'
 Plug 'sirver/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
-"Telescope
+" Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-media-files.nvim'
 
-Plug 'scrooloose/nerdcommenter'
-Plug 'lervag/vimtex'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-fugitive'
+" Statusline and Lsp status
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
+
+" The best colors
 Plug 'ellisonleao/gruvbox.nvim'
 
-Plug 'nvim-lualine/lualine.nvim'
-
+" Plugins for specific files
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'lervag/vimtex'
+
+" Git wrapper
+Plug 'tpope/vim-fugitive'
+
+Plug 'scrooloose/nerdcommenter'
+Plug 'jiangmiao/auto-pairs'
+
 Plug 'tpope/vim-dispatch'
 Plug 'mbbill/undotree'
 
-Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
 
 call plug#end()
 
