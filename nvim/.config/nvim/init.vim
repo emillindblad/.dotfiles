@@ -54,6 +54,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'tpope/vim-dispatch'
 Plug 'mbbill/undotree'
 
+Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
+
 call plug#end()
 
 let mapleader = " "
