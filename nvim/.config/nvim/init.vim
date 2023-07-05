@@ -43,12 +43,13 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-media-files.nvim'
 
 Plug 'scrooloose/nerdcommenter'
-"Plug 'scrooloose/nerdtree'
 Plug 'lervag/vimtex'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'ellisonleao/gruvbox.nvim'
-Plug 'itchyny/lightline.vim'
+
+Plug 'nvim-lualine/lualine.nvim'
+
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'tpope/vim-dispatch'
 Plug 'mbbill/undotree'
