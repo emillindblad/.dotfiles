@@ -5,6 +5,11 @@
 "|_| |_|\_/ |_|_| |_| |_|
 
 
+" TODO
+" Migrate to lua
+" Plugin stuff in /after/plugin, others things can also be in /after
+" Maybe migrate to packer?
+
 " Autodownload vim-plug if not installed
 if ! filereadable(expand('~/.local/share/nvim/site/autoload/plug.vim'))
     echo "Downloading vim-plug to manage plugins..."
