@@ -1,3 +1,4 @@
+require("neodev").setup()
 require("mason").setup()
 local mason_lspconfig = require("mason-lspconfig")
 local servers = {
@@ -25,6 +26,9 @@ local servers = {
     rust_analyzer = {},
     lua_ls = {
         Lua = {
+            completion = {
+                callSnipet = "Replace"
+            },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
                 globals = {'vim'},
@@ -44,19 +48,23 @@ local on_attach = function(_, bufnr)
 end
 
 local util = require('lspconfig.util')
+-- Annouce capabilities to LSP servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
+-- Update diagnostics in insert mode
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
         update_in_insert = true,
     }
 )
 
+-- Install servers
 mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers)
 }
 
+-- Configure servers
 mason_lspconfig.setup_handlers {
     function (server_name)
         require('lspconfig')[server_name].setup {

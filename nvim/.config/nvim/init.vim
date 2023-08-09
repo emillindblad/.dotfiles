@@ -5,6 +5,11 @@
 "|_| |_|\_/ |_|_| |_| |_|
 
 
+" TODO
+" Migrate to lua
+" Plugin stuff in /after/plugin, others things can also be in /after
+" Maybe migrate to packer?
+
 " Autodownload vim-plug if not installed
 if ! filereadable(expand('~/.local/share/nvim/site/autoload/plug.vim'))
     echo "Downloading vim-plug to manage plugins..."
@@ -29,29 +34,41 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'onsails/lspkind.nvim'
+Plug 'folke/neodev.nvim'
 
 " Snip snip
 Plug 'sirver/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
-"Telescope
+" Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-media-files.nvim'
 
-Plug 'scrooloose/nerdcommenter'
-"Plug 'scrooloose/nerdtree'
-Plug 'lervag/vimtex'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-fugitive'
+" Statusline and Lsp status
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
+
+" The best colors
 Plug 'ellisonleao/gruvbox.nvim'
-Plug 'itchyny/lightline.vim'
+
+" Plugins for specific files
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'lervag/vimtex'
+
+" Git wrapper
+Plug 'tpope/vim-fugitive'
+
+Plug 'scrooloose/nerdcommenter'
+Plug 'windwp/nvim-autopairs'
+
 Plug 'tpope/vim-dispatch'
 Plug 'mbbill/undotree'
+
 
 call plug#end()
 
