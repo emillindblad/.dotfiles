@@ -80,6 +80,44 @@ tray-padding = 2
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+[bar/laptop]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 27
+radius = 6.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 4
+border-bottom-size = 0
+border-color = #00000000
+
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Source code pro:size=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=11;1
+font-3 = FontAwesome:style=Regular:pixelsize=11;1
+
+modules-left = powermenu i3 onboard xwindow
+modules-center = date
+modules-right = backlight memory cpu temperature gpu gputemperature templaptop wlan eth battery pulseaudio
+
+tray-position = right
+tray-padding = 2
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
 [bar/1440pbar]
 monitor = ${env:MONITOR:}
 width = 100%
@@ -441,6 +479,11 @@ menu-5-0 = Screen off
 menu-5-0-exec = screenoff
 menu-5-1 = Cancel
 menu-5-1-exec = menu-open-0
+
+[module/onboard]
+type = custom/text
+content = 
+click-left = onboard
 
 [settings]
 screenchange-reload = true
