@@ -30,6 +30,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Tab exec rofi -show window
 bindsym $mod+Shift+d exec $BROWSER
+bindsym $mod+Shift+a exec rnote
 
 # change focus
 bindsym $mod+h focus left
