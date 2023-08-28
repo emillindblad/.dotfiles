@@ -5,8 +5,7 @@ local servers = {
     pyright = {},
     texlab = {},
     clangd = {
-        cmd = { "clangd", "--background-index", "--clang-tidy" },
-        root_dir = function() return vim.loop.cwd() end
+        cmd = { "clangd --background-index --clang-tidy" }
     },
     jdtls = {},
     tsserver = {},
