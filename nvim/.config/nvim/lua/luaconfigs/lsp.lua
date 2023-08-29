@@ -39,7 +39,8 @@ local servers = {
             },
             telemetry = { enable = false, },
         },
-    }
+    },
+    gopls = {},
 }
 
 local on_attach = function(_, bufnr)
@@ -47,6 +48,7 @@ local on_attach = function(_, bufnr)
 end
 
 local util = require('lspconfig.util')
+
 -- Annouce capabilities to LSP servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
