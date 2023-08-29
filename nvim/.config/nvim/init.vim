@@ -45,7 +45,7 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 " Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-media-files.nvim'
 
@@ -86,7 +86,7 @@ lua require("luaconfigs")
 	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
 " Save file as sudo on files that require root permission
-	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+    cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Explore
     nnoremap <leader>pv :Ex<CR>
