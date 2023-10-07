@@ -5,3 +5,4 @@ nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim
 nnoremap <leader>pf :lua require('telescope.builtin').find_files({ hidden = true, no_ignore = true })<CR>
 nnoremap <leader>vrc :lua require('luaconfigs.telescope').search_dotfiles({ hidden = true })<CR>
 nnoremap <leader>dl :Telescope diagnostics<CR>
+nnoremap <leader>ws :Telescope lsp_dynamic_workspace_symbols<CR>
