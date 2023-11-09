@@ -40,7 +40,13 @@ local servers = {
             telemetry = { enable = false, },
         },
     },
-    gopls = {},
+    gopls = {
+        completeUnimported = true,
+        usePlaceholders = true,
+        analyses = {
+            unusedparams = true,
+        }
+    },
 }
 
 local on_attach = function(_, bufnr)
