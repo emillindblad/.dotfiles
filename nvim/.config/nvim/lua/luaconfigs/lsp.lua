@@ -2,7 +2,22 @@ require("neodev").setup()
 require("mason").setup()
 local mason_lspconfig = require("mason-lspconfig")
 local servers = {
-    pyright = {},
+    pylsp = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    enabled = true,
+                    ignore = {'W503', 'E121', 'E123', 'E3'},
+                    maxLineLength = 130
+                },
+                pylint = {
+                    enabled = true,
+                    args = {'--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name'}
+                }
+            },
+
+        },
+    },
     texlab = {},
     clangd = {
         cmd = { "clangd --background-index --clang-tidy" }
