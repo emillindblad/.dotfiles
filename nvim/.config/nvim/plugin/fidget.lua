@@ -1,6 +1,6 @@
 require"fidget".setup{
     text = {
-        spinner = "dots_negative",
+        spinner = "dots",
     },
     window = {
         blend = 0,
