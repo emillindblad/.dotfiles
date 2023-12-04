@@ -2,4 +2,4 @@
 
 tmp_file=$(mktemp)
 
-st -c "text_scratchpad" -e nvim +"startinsert" +"setlocal spell" +"set ft=tex" ${tmp_file} && xclip -selection clipboard < $tmp_file
+alacritty --class "text_scratchpad" -e nvim +"startinsert" +"setlocal spell" +"set ft=tex" ${tmp_file} && xclip -selection clipboard < $tmp_file
