@@ -2,14 +2,38 @@ require("neodev").setup()
 require("mason").setup()
 local mason_lspconfig = require("mason-lspconfig")
 local servers = {
-    pyright = {},
+    pylsp = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    enabled = true,
+                    ignore = {'W503', 'E121', 'E123', 'E3'},
+                    maxLineLength = 130
+                },
+                pylint = {
+                    enabled = true,
+                    args = {'--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name'}
+                }
+            },
+
+        },
+    },
     texlab = {},
     clangd = {
         cmd = { "clangd --background-index --clang-tidy" }
     },
     jdtls = {},
     tsserver = {},
-    tailwindcss = {},
+    tailwindcss = {
+        --tailwindcss = {
+            --filetypes = { 'rust' },
+            --init_options = {
+                --userLanguages = {
+                    --rust = "html",
+                --},
+            --},
+        --},
+    },
     eslint = {},
     emmet_ls = {
         filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
@@ -20,6 +44,9 @@ local servers = {
                     ["bem.enabled"] = true,
                 },
             },
+            --userLanguages = {
+                --rust = 'html'
+            --}
         }
     },
     rust_analyzer = {},
@@ -80,6 +107,9 @@ mason_lspconfig.setup_handlers {
             capabilities = capabilities,
             on_attach = on_attach,
             settings = servers[server_name],
+            filetypes = (servers[server_name] or {}).filetypes,
+            init_options = (servers[server_name] or {}).init_options,
+            --cmd = (servers[server_name] or {}).cmd,
         }
     end,
 }

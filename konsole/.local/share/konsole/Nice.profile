@@ -3,7 +3,7 @@ AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Gruvbox
 EmojiFont=Noto Color Emoji,11,-1,5,50,0,0,0,0,0
-Font=Source Code Pro,12,-1,5,50,0,0,0,0,0
+Font=Source Code Pro,13,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=false
 WordMode=false
 

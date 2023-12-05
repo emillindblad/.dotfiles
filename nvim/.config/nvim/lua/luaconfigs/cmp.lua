@@ -18,8 +18,8 @@ cmp.setup {
     sources = {
         { name = 'nvim_lua' },
         { name = 'nvim_lsp' },
-        { name = 'ultisnips' }, -- For ultisnips users.
         { name = 'nvim_lsp_signature_help' },
+        { name = 'ultisnips' }, -- For ultisnips users.
         { name = 'buffer', keyword_length = 3 },
     },
 
