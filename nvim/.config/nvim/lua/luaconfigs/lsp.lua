@@ -43,7 +43,9 @@ local servers = {
     gopls = {
         completeUnimported = true,
         usePlaceholders = true,
+        staticcheck = true,
         analyses = {
+            shadow = true,
             unusedparams = true,
         }
     },
@@ -81,6 +83,21 @@ mason_lspconfig.setup_handlers {
         }
     end,
 }
+
+--local lspconfig = require("lspconfig")
+--lspconfig.gopls.setup({
+  --settings = {
+    --gopls = {
+        --completeUnimported = true,
+        --usePlaceholders = true,
+        --staticcheck = true,
+        --analyses = {
+            --shadow = true,
+            --unusedparams = true,
+        --}
+    --},
+  --},
+--})
 
 -- TODO: Setup for remaining servers.
 --Javuh
