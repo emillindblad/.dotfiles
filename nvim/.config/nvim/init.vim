@@ -122,10 +122,7 @@ lua require("luaconfigs")
     vnoremap > >gv
     vnoremap < <gv
 
-" Tabs
-    nnoremap <C-t> :tabnew<CR>
 " Quickfix window
-
     nnoremap <leader>q :cclose<CR>
     nnoremap <C-j> :cnext<CR>zz
     nnoremap <C-k> :cprev<CR>zz
@@ -133,7 +130,6 @@ lua require("luaconfigs")
 " Compile and run with c and c++
     au FileType c nnoremap <F8> :w<CR>:!gcc % -o %< && ./%< <CR>
     au FileType cpp nnoremap <F8> :w<CR>:!g++ -o %< % && ./%< <CR>
-
 
 " View markdown with MarkdownPreview
     au FileType markdown nnoremap <F8> :MarkdownPreview<CR>
