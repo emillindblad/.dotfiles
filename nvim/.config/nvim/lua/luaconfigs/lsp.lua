@@ -22,7 +22,10 @@ local servers = {
     clangd = {
         cmd = { "clangd --background-index --clang-tidy" }
     },
-    jdtls = {},
+    jdtls = {
+        cmd = { "jdtls" },
+        filetypes = { "java" },
+    },
     tsserver = {},
     tailwindcss = {
         --tailwindcss = {
