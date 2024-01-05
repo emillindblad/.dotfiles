@@ -1,5 +1,5 @@
 " View markdown with MarkdownPreview
-au FileType markdown nnoremap <F8> :MarkdownPreview<CR>
+au FileType markdown nnoremap <buffer> <F8> :MarkdownPreview<CR>
 
 function! g:Open_browser(url)
     exec "Start! firefox --new-window " . a:url

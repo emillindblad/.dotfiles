@@ -9,11 +9,12 @@ require("gruvbox").setup({
     contrast = "hard",
     transparent_mode = true,
     overrides = {
-        SignColumn = {bg = ""},
-        LineNr = {fg = "#83a598"},
+        --SignColumn = {bg = ""},
+        --LineNr = {fg = "#83a598"},
         netrwDir = {fg = "#83a598"},
-        TelescopeBorder = {fg = "#83a598"},
+        --TelescopeBorder = {fg = "#83a598"},
         qfFileName = {fg = "#aed75f"},
+        QuickFixLine = { bg = "#665c54" },
         NormalFloat = { bg = "#504945"},
     },
 })

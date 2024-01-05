@@ -45,7 +45,6 @@ Plug 'sirver/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
 " Telescope
-Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
@@ -125,6 +124,8 @@ lua require("luaconfigs")
     nnoremap <leader>q :cclose<CR>
     nnoremap <C-j> :cnext<CR>zz
     nnoremap <C-k> :cprev<CR>zz
+
+    nnoremap <F8> <nop>
 
 " Compile and run with c and c++
     au FileType c nnoremap <F8> :w<CR>:!gcc % -o %< && ./%< <CR>
