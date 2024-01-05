@@ -7,8 +7,10 @@
 
 " TODO
 " Migrate to lua
+" Migrate lazy
 " Plugin stuff in /after/plugin, others things can also be in /after
-" Maybe migrate to packer?
+
+let mapleader = " "
 
 " Autodownload vim-plug if not installed
 if ! filereadable(expand('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -43,7 +45,6 @@ Plug 'sirver/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
 " Telescope
-Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
@@ -69,15 +70,12 @@ Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-dispatch'
 Plug 'mbbill/undotree'
 
+" Lets try it
+Plug 'github/copilot.vim'
 
 call plug#end()
 
-let mapleader = " "
-
 lua require("luaconfigs")
-
-" NERDtree
-    let NERDTreeShowHidden=1
 
 " Automatically deletes all trailing whitespace on save.
 	autocmd BufWritePre * %s/\s\+$//e
@@ -127,28 +125,8 @@ lua require("luaconfigs")
     nnoremap <C-j> :cnext<CR>zz
     nnoremap <C-k> :cprev<CR>zz
 
+    nnoremap <F8> <nop>
+
 " Compile and run with c and c++
     au FileType c nnoremap <F8> :w<CR>:!gcc % -o %< && ./%< <CR>
     au FileType cpp nnoremap <F8> :w<CR>:!g++ -o %< % && ./%< <CR>
-
-" View markdown with MarkdownPreview
-    au FileType markdown nnoremap <F8> :MarkdownPreview<CR>
-
-    function! g:Open_browser(url)
-        exec "Start! firefox --new-window " . a:url
-        " Alternatively, without vim-dispatch
-        "silent exec "firefox --new-window " . a:url . " &"
-    endfunction
-    let g:mkdp_browserfunc = 'g:Open_browser'
-    let g:mkdp_auto_close = 0
-
-" Compile and view LaTeX with VimTeX
-    nnoremap <F8> <nop>
-    au FileType tex nnoremap <F8> :VimtexCompile<CR>
-    au FileType tex setlocal spell                          "Enable spell check
-    au FileType tex set spelllang=sv,en_us                  "Set spell check to sv and eng
-    au FileType markdown setlocal spell                          "Enable spell check
-    au FileType markdown set spelllang=sv,en_us                  "Set spell check to sv and eng
-    au FileType text setlocal spell                          "Enable spell check
-    au FileType text set spelllang=sv,en_us                  "Set spell check to sv and eng
-

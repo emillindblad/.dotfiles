@@ -6,3 +6,4 @@ nnoremap <leader>pf :lua require('telescope.builtin').find_files({ hidden = true
 nnoremap <leader>vrc :lua require('luaconfigs.telescope').search_dotfiles({ hidden = true })<CR>
 nnoremap <leader>dl :Telescope diagnostics<CR>
 nnoremap <leader>ws :Telescope lsp_dynamic_workspace_symbols<CR>
+nnoremap <leader>ht :Telescope help_tags<CR>
