@@ -1,5 +1,10 @@
 require("neodev").setup()
-require("mason").setup()
+require("mason").setup({
+    ui = {
+        border = "rounded",
+        height = 0.8,
+    }
+})
 local mason_lspconfig = require("mason-lspconfig")
 local servers = {
     pylsp = {
@@ -87,7 +92,7 @@ end
 
 local util = require('lspconfig.util')
 
--- Annouce capabilities to LSP servers
+-- Announce capabilities to LSP servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
@@ -97,6 +102,23 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
         update_in_insert = true,
     }
 )
+
+-- Use rounded borders for hover and signature help
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+  vim.lsp.handlers.hover,
+  {border = 'rounded'}
+)
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+  vim.lsp.handlers.signature_help,
+  {border = 'rounded'}
+)
+
+vim.diagnostic.config({
+    float = {
+        border = "rounded",
+    }
+})
 
 -- Install servers
 mason_lspconfig.setup {
@@ -116,6 +138,8 @@ mason_lspconfig.setup_handlers {
         }
     end,
 }
+
+require('lspconfig.ui.windows').default_options.border = 'rounded'
 
 --local lspconfig = require("lspconfig")
 --lspconfig.gopls.setup({

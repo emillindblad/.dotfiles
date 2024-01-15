@@ -9,15 +9,23 @@ require("gruvbox").setup({
     contrast = "hard",
     transparent_mode = true,
     overrides = {
-        --SignColumn = {bg = ""},
         --LineNr = {fg = "#83a598"},
-        netrwDir = {fg = "#83a598"},
-        --TelescopeBorder = {fg = "#83a598"},
-        qfFileName = {fg = "#aed75f"},
-        QuickFixLine = { bg = "#665c54" },
-        NormalFloat = { bg = "#504945"},
+        netrwDir = { fg = "#83a598" },
+        TelescopeBorder = { fg = "#7c6f64" },
+        --qfFileName = {fg = "#aed75f"},
+        --QuickFixLine = { bg = "#665c54" },
+        LspInfoBorder = { fg = "#EBDBB2" },
+
     },
 })
 
+--vim.api.nvim_create_autocmd("FileType", {
+    --pattern = "mason",
+    --callback = function ()
+        --vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#EBDBB2" })
+    --end
+--})
+
+--Bg for non transparent mode "#292F3A"
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
