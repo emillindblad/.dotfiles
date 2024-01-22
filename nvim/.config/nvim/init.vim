@@ -64,7 +64,12 @@ Plug 'lervag/vimtex'
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 
+" Comments
 Plug 'scrooloose/nerdcommenter'
+" Migrate to this:
+"Plug 'numToStr/Comment.nvim'
+"Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+
 Plug 'windwp/nvim-autopairs'
 
 Plug 'tpope/vim-dispatch'
