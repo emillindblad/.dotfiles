@@ -1,8 +1,8 @@
 # Guide on how to use i3-gaps with KDE
-1. Create a new systemd *user unit* to start i3:
-```
-~/.config/systemd/user/plasma-custom-wm.service
+1. Create a new systemd *user unit* to start i3
 
+`~/.config/systemd/user/plasma-custom-wm.service`
+```
 [Install]
 WantedBy=plasma-workspace.target
 
@@ -14,6 +14,7 @@ Before=plasma-workspace.target
 ExecStart=/usr/bin/i3
 Slice=session.slice
 Restart=on-failure
+MemoryAccounting=false
 ```
 2. Mask the old unit, so that it doesn't start:\
     `systemctl --user mask plasma-kwin_x11.service`
