@@ -1,6 +1,7 @@
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
 local lspkind = require('lspkind')
+local tw_colorizer = require('tailwindcss-colorizer-cmp')
 cmp.event:on(
     'confirm_done',
     cmp_autopairs.on_confirm_done()
@@ -41,19 +42,24 @@ cmp.setup {
     },
 
     formatting = {
-        format = lspkind.cmp_format {
-            mode = "symbol_text",
-            maxwidth = 35,
-            ellipsis_char = '...',
-            menu = {
-                buffer = "[Buf]",
-                nvim_lsp = "[LSP]",
-                ultisnips = "[Snip]",
-                latex_symbols = "[LaTeX]",
-                path = "[Path]",
-            },
-        },
-    },
+        format = function(entry, vim_item)
+            local kind = lspkind.cmp_format({
+                mode = "symbol_text",
+                maxwidth = 35,
+                ellipsis_char = '...',
+                menu = {
+                    buffer = "[Buf]",
+                    nvim_lsp = "[LSP]",
+                    ultisnips = "[Snip]",
+                    latex_symbols = "[LaTeX]",
+                    path = "[Path]",
+                    },
+                })(entry, vim_item)
+            tw_colorizer.setup({ color_square_width = 2 })
+            tw_colorizer.formatter(entry, vim_item)
 
+        return kind
+        end,
+    },
     preselect = cmp.PreselectMode.None,
 }

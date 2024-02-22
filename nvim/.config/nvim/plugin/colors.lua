@@ -15,7 +15,7 @@ require("gruvbox").setup({
         --qfFileName = {fg = "#aed75f"},
         --QuickFixLine = { bg = "#665c54" },
         LspInfoBorder = { fg = "#EBDBB2" },
-
+        TreesitterContext = { bg = "#504945" },
     },
 })
 

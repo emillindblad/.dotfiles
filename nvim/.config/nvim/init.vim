@@ -60,15 +60,18 @@ Plug 'ellisonleao/gruvbox.nvim'
 " Plugins for specific files
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'lervag/vimtex'
+Plug 'roobert/tailwindcss-colorizer-cmp.nvim'
 
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 
 " Comments
 Plug 'scrooloose/nerdcommenter'
-" Migrate to this:
+
+" Future plugins to checkout
 "Plug 'numToStr/Comment.nvim'
 "Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+"Plug 'folke/todo-comments.nvim'
 
 Plug 'windwp/nvim-autopairs'
 
