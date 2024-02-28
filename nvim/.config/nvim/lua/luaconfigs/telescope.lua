@@ -18,12 +18,12 @@ telescope.setup({
         -- **Add new arguments
         vimgrep_arguments = vimgrep_arguments,
 
-        file_sorter = require("telescope.sorters").get_fzy_sorter,
+        --file_sorter = require("telescope.sorters").get_fzy_sorter,
         prompt_prefix = " > ",
         color_devicons = true,
         file_ignore_patterns = {".git/", "node_modules"},
-        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        --file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+        --grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
     },
     pickers = {
         find_files = {
