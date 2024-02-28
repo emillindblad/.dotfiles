@@ -8,19 +8,21 @@ require("mason").setup({
 local mason_lspconfig = require("mason-lspconfig")
 local servers = {
     pylsp = {
-        pylsp = {
-            plugins = {
-                pycodestyle = {
-                    enabled = true,
-                    ignore = {'W503', 'E121', 'E123', 'E3'},
-                    maxLineLength = 130
+        settings = {
+            pylsp = {
+                plugins = {
+                    pycodestyle = {
+                        enabled = true,
+                        ignore = {'W503', 'E121', 'E123', 'E3'},
+                        maxLineLength = 130
+                    },
+                    pylint = {
+                        enabled = true,
+                        args = {'--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name'}
+                    }
                 },
-                pylint = {
-                    enabled = true,
-                    args = {'--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name'}
-                }
-            },
 
+            },
         },
     },
     texlab = {},
@@ -57,20 +59,16 @@ local servers = {
     },
     rust_analyzer = {},
     lua_ls = {
-        Lua = {
-            completion = {
-                callSnipet = "Replace"
+        settings = {
+            Lua = {
+                runtime = { version = 'LuaJIT' },
+                workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    unpack(vim.api.nvim_get_runtime_file('', true)),
+                    checkThirdParty = false,
+                },
+                telemetry = { enable = false, },
             },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = {'vim'},
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-                checkThirdParty = false,
-            },
-            telemetry = { enable = false, },
         },
     },
     gopls = {
