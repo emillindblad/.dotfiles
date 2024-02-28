@@ -22,3 +22,4 @@ set completeopt=menu,menuone,noselect   "Options for insert mode completion
 set cmdheight=1                         "Give more space for displaying messages
 set updatetime=40                       "Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience
 set mouse=                              "Ignore mouse
+set wrapmargin=5                        "Wrap margin

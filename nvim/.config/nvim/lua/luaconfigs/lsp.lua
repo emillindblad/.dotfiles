@@ -8,19 +8,21 @@ require("mason").setup({
 local mason_lspconfig = require("mason-lspconfig")
 local servers = {
     pylsp = {
-        pylsp = {
-            plugins = {
-                pycodestyle = {
-                    enabled = true,
-                    ignore = {'W503', 'E121', 'E123', 'E3'},
-                    maxLineLength = 130
+        settings = {
+            pylsp = {
+                plugins = {
+                    pycodestyle = {
+                        enabled = true,
+                        ignore = {'W503', 'E121', 'E123', 'E3'},
+                        maxLineLength = 130
+                    },
+                    pylint = {
+                        enabled = true,
+                        args = {'--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name'}
+                    }
                 },
-                pylint = {
-                    enabled = true,
-                    args = {'--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name'}
-                }
-            },
 
+            },
         },
     },
     texlab = {},
@@ -33,14 +35,12 @@ local servers = {
     },
     tsserver = {},
     tailwindcss = {
-        --tailwindcss = {
-            --filetypes = { 'rust' },
-            --init_options = {
-                --userLanguages = {
-                    --rust = "html",
-                --},
-            --},
-        --},
+        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'rust' },
+        init_options = {
+            userLanguages = {
+                rust = "html",
+            },
+        },
     },
     eslint = {},
     emmet_ls = {
@@ -59,30 +59,30 @@ local servers = {
     },
     rust_analyzer = {},
     lua_ls = {
-        Lua = {
-            completion = {
-                callSnipet = "Replace"
+        settings = {
+            Lua = {
+                runtime = { version = 'LuaJIT' },
+                workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    unpack(vim.api.nvim_get_runtime_file('', true)),
+                    checkThirdParty = false,
+                },
+                telemetry = { enable = false, },
             },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = {'vim'},
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-                checkThirdParty = false,
-            },
-            telemetry = { enable = false, },
         },
     },
     gopls = {
-        completeUnimported = true,
-        usePlaceholders = true,
-        staticcheck = true,
-        analyses = {
-            shadow = true,
-            unusedparams = true,
-        }
+        settings = {
+            gopls = {
+                completeUnimported = true,
+                usePlaceholders = true,
+                staticcheck = true,
+                analyses = {
+                    shadow = true,
+                    unusedparams = true,
+                }
+            },
+        },
     },
 }
 
@@ -103,7 +103,25 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     }
 )
 
+
+-- Configure servers
+mason_lspconfig.setup_handlers {
+    function (server_name)
+        local server = servers[server_name] or {}
+        require('lspconfig')[server_name].setup {
+            cmd = server.cmd,
+            settings = server.settings,
+            filetypes = server.filetypes,
+            init_options = server.init_options,
+            capabilities = server.capabilities or capabilities,
+            on_attach = on_attach,
+        }
+    end,
+}
+
 -- Use rounded borders for hover and signature help
+require('lspconfig.ui.windows').default_options.border = 'rounded'
+
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   vim.lsp.handlers.hover,
   {border = 'rounded'}
@@ -124,22 +142,6 @@ vim.diagnostic.config({
 mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers)
 }
-
--- Configure servers
-mason_lspconfig.setup_handlers {
-    function (server_name)
-        require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
-            filetypes = (servers[server_name] or {}).filetypes,
-            init_options = (servers[server_name] or {}).init_options,
-            --cmd = (servers[server_name] or {}).cmd,
-        }
-    end,
-}
-
-require('lspconfig.ui.windows').default_options.border = 'rounded'
 
 --local lspconfig = require("lspconfig")
 --lspconfig.gopls.setup({
