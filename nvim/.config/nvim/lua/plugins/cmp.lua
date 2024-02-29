@@ -1,0 +1,94 @@
+return {
+  'hrsh7th/nvim-cmp',
+  event = 'InsertEnter',
+  dependencies = {
+    { -- TODO: Migrate from ultisnips
+      'L3MON4D3/LuaSnip',
+      build = (function()
+        if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+          return
+        end
+        return 'make install_jsregexp'
+      end)(),
+    },
+    'saadparwaiz1/cmp_luasnip',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
+    'hrsh7th/cmp-nvim-lua',
+    'onsails/lspkind.nvim',
+    'folke/neodev.nvim',
+    'roobert/tailwindcss-colorizer-cmp.nvim',
+  },
+  config = function()
+    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+    local cmp = require('cmp')
+    local lspkind = require('lspkind')
+    local tw_colorizer = require('tailwindcss-colorizer-cmp')
+    local luasnip = require('luasnip')
+    luasnip.config.setup {}
+
+    cmp.event:on(
+      'confirm_done',
+      cmp_autopairs.on_confirm_done()
+    )
+
+    cmp.setup {
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+        hover = cmp.config.window.bordered(),
+      },
+
+      mapping = cmp.mapping.preset.insert({
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      }),
+
+      sources = {
+        { name = 'nvim_lua' },
+        { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
+        { name = 'luasnip' },
+        { name = 'buffer', keyword_length = 3 },
+        { name = 'path' },
+      },
+
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+          --vim.fn["UltiSnips#Anon"](args.body)
+        end,
+      },
+
+      formatting = {
+        format = function(entry, vim_item)
+          local kind = lspkind.cmp_format({
+            mode = "symbol_text",
+            maxwidth = 35,
+            ellipsis_char = '...',
+            menu = {
+              buffer = "[Buf]",
+              nvim_lsp = "[LSP]",
+              ultisnips = "[Snip]",
+              latex_symbols = "[LaTeX]",
+              path = "[Path]",
+            },
+          })(entry, vim_item)
+          tw_colorizer.setup({ color_square_width = 2 })
+          tw_colorizer.formatter(entry, vim_item)
+
+          return kind
+        end,
+      },
+      preselect = cmp.PreselectMode.None,
+    }
+  end,
+}
