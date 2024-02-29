@@ -27,7 +27,7 @@ vim.opt.hlsearch = false
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
--- Case-insensitive searching UNLESS \C or capital in search
+-- Case-insensitive searching
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
@@ -41,20 +41,22 @@ vim.opt.mouse = 'a'
 -- Put long lines on a new line. Useful for text documents
 vim.opt.wrapmargin = 5
 
-vim.opt.swapfile = false                                -- Disable swap files
-vim.opt.backup = false                                  -- Disable backup files
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"  -- Set undodir
-vim.opt.undofile = true                                 -- Enable undo files
+-- Disable swap and backup files
+vim.opt.swapfile = false
+vim.opt.backup = false
 
-vim.opt.spell = true                                    -- Enable spell check
-vim.opt.spelllang = "sv,en_us"                          -- Set spell check to sv and eng
+-- Enable and set undofile
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+
+-- Enable spell check for swedish and english
+vim.opt.spell = true
+vim.opt.spelllang = "sv,en_us"
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
 
--- Sets how neovim will display certain whitespace in the editor.
---  See :help 'list'
---  and :help 'listchars'
+-- Sets how to display certain whitespace in the editor.
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
@@ -62,16 +64,12 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 
 -- Remove trailing whitespace on save
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern =  '*',
-  callback = function()
-    vim.notify("Cleared whitespace")
-    vim.cmd([[
-       %s/\s\\'+'$//e
-       ]])
-  end
+vim.api.nvim_create_autocmd({ 'BufWritePre', 'BufWrite' }, {
+  pattern = '*',
+  command = [[ %s/\s\+$//e ]],
 })
 
+-- Highlight text on yank
 vim.api.nvim_create_autocmd('textyankpost', {
   desc = 'highlight when yanking (copying) text',
   callback = function()
@@ -79,6 +77,3 @@ vim.api.nvim_create_autocmd('textyankpost', {
   end,
 })
 
-vim.cmd([[
-    autocmd BufWritePre * %s/\s\+$//e
-]])
