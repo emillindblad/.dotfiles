@@ -13,3 +13,5 @@ vim.keymap.set('n', '<C-j>', '<cmd>cnext<cr>zz', { desc = 'Next item in Quickfix
 vim.keymap.set('n', '<C-k>', '<cmd>cprev<cr>zz', { desc = 'Previous item in Quickfix window' })
 
 vim.keymap.set('n', '<leader>pv', '<cmd>Ex<cr>', { desc = 'Open netrw' })
+
+vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Find and replace' })
