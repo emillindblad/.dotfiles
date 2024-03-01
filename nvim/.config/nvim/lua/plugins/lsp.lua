@@ -16,7 +16,6 @@ return {
         -- TODO: Look into using telescope for some of these
         map('<leader>gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
         map('<leader>gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-        map('<leader>sh', vim.lsp.buf.signature_help, '[S]ignature [H]elp')
         map('<leader>re', vim.lsp.buf.references, '[R]f[E]rences')
         map('<leader>rn', vim.lsp.buf.rename, '[R]e[N]ame')
         map('<leader>vh', vim.lsp.buf.hover, '[V]im [H]over')
@@ -108,6 +107,10 @@ return {
                 unpack(vim.api.nvim_get_runtime_file('', true)),
               }
             },
+            completion = {
+              callSnippet = 'Replace',
+            },
+            diagnostics = { disable = { 'missing-fields' } },
             telemetry = { enable = false, },
           },
         },
