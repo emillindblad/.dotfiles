@@ -1,4 +1,7 @@
-# Guide on how to use i3-gaps with KDE
+# .dotfiles
+Config files for various software that I use. My Neovim config can be found [here](https://github.com/emillindblad/.dotfiles/tree/master/nvim/.config/nvim).
+
+## Guide on how to use i3-gaps with KDE
 1. Create a new systemd *user unit* to start i3
 
 `~/.config/systemd/user/plasma-custom-wm.service`
@@ -26,7 +29,7 @@ MemoryAccounting=false
 If you want to go back to KWin, unmask `plasma-kwin_x11.service` and disable
 `plasma-custom-wm.service`.
 
-## Old method, deprecated since KDE 5.25!
+### Old method, deprecated since KDE 5.25!
 1. Install i3-gaps, feh and picom with your package manager.
 2. Clone this repo to a folder of your choice.
 3. Copy `wm.sh` to `~/.config/plasma-workspace/env/wm.sh` This replaces Kwin with i3-gaps.
