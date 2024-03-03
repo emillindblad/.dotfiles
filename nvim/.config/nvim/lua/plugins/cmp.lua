@@ -26,8 +26,10 @@ return {
     local cmp = require('cmp')
     local lspkind = require('lspkind')
     local tw_colorizer = require('tailwindcss-colorizer-cmp')
+
     local luasnip = require('luasnip')
-    luasnip.config.setup {}
+    luasnip.config.setup { enable_autosnippets = true }
+    require('luasnip.loaders.from_lua').lazy_load({ paths = vim.fn.stdpath 'config' .. '/LuaSnip' })
 
     cmp.event:on(
       'confirm_done',
@@ -44,12 +46,25 @@ return {
       mapping = cmp.mapping.preset.insert({
         ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<C-p>'] = cmp.mapping.select_prev_item(),
+
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
+
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
+
+        ['<C-l>'] = cmp.mapping(function()
+            if luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
+            end
+          end, { 'i', 's' }),
+          ['<C-h>'] = cmp.mapping(function()
+            if luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
+            end
+          end, { 'i', 's' }),
       }),
 
       sources = {
@@ -88,6 +103,8 @@ return {
           return kind
         end,
       },
+
+      -- Fixes gopls preselecting non 1st item
       preselect = cmp.PreselectMode.None,
     }
   end,

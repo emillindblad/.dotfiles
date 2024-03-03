@@ -4,7 +4,7 @@ return {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'whoissethdaniel/mason-tool-installer.nvim',
-    { 'j-hui/fidget.nvim', opts = { notification = { window = { winblend = 0 }}}},
+    { 'j-hui/fidget.nvim', opts = { notification = { window = { winblend = 0 } } } },
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -42,6 +42,7 @@ return {
 
       end,
     })
+
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
@@ -137,8 +138,7 @@ return {
       }
     }
 
-    -- You can add other tools here that you want Mason to install
-    -- for you, so that they are available from within Neovim.
+
 
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
