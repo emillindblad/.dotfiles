@@ -45,9 +45,8 @@ vim.opt.wrapmargin = 5
 vim.opt.swapfile = false
 vim.opt.backup = false
 
--- Enable and set undofile
+-- Enable undofile
 vim.opt.undofile = true
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 -- Enable spell check for swedish and english
 vim.opt.spell = true
@@ -71,7 +70,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre', 'BufWrite' }, {
 
 -- Highlight text on yank
 vim.api.nvim_create_autocmd('textyankpost', {
-  desc = 'highlight when yanking (copying) text',
+  desc = 'Highlight when yanking (copying) text',
   callback = function()
     vim.highlight.on_yank()
   end,
