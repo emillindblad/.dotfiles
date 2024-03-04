@@ -14,8 +14,8 @@ return {
             -- Note that setting an entry here replaces all other patterns for this entry.
             -- By setting the 'default' entry below, you can control which nodes you want to
             -- appear in the context window.
-            default = { "function", "method", "for", "while", "if", "switch", "case" },
-            typescript = { "class_declaration", "abstract_class_declaration", "else_clause" },
+            default = { 'function', 'method', 'for', 'while', 'if', 'switch', 'case' },
+            typescript = { 'class_declaration', 'abstract_class_declaration', 'else_clause' },
           },
           mode = 'cursor',
         }
@@ -24,7 +24,7 @@ return {
   },
   config = function()
     require('nvim-treesitter.configs').setup {
-      ensure_installed = { "javascript", "typescript", "tsx", "python", "lua", "java", "bash", "vim", "rust", "c", "cpp", "go" },
+      ensure_installed = { 'bash', 'lua', 'c', 'go', 'rust', 'python', 'lua', 'java', 'vim', 'vimdoc', 'tsx', 'typescript', 'javascript' },
       disable = { 'latex', 'bibtex', 'tex' },
       sync_install = false,
       auto_install = false,

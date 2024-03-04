@@ -5,6 +5,7 @@ return {
     'williamboman/mason-lspconfig.nvim',
     'whoissethdaniel/mason-tool-installer.nvim',
     { 'j-hui/fidget.nvim', opts = { notification = { window = { winblend = 0 } } } },
+    'folke/neodev.nvim',
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -53,12 +54,12 @@ return {
             plugins = {
               pycodestyle = {
                 enabled = true,
-                ignore = {'W503', 'E121', 'E123', 'E3'},
+                ignore = { 'W503', 'E121', 'E123', 'E3' },
                 maxLineLength = 130
               },
               pylint = {
                 enabled = true,
-                args = {'--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name'}
+                args = { '--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name' }
               }
             },
 
@@ -105,6 +106,7 @@ return {
             workspace = {
               checkThirdParty = false,
               library = {
+                '${3rd}/luv/library',
                 unpack(vim.api.nvim_get_runtime_file('', true)),
               }
             },
@@ -140,23 +142,21 @@ return {
 
 
 
+
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format lua code
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+
+    require('neodev').setup()
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}
-          require('lspconfig')[server_name].setup {
-            -- TODO: Figure out how to extend cmd/ just add flags
-            cmd = server.cmd,
-            settings = server.settings,
-            filetypes = server.filetypes,
-            init_options = server.init_options,
-            capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
-          }
+          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+          -- TODO: Figure out how to extend cmd/just add flags
+          require('lspconfig')[server_name].setup(server)
         end,
       },
     }
