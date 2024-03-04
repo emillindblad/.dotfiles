@@ -40,7 +40,6 @@ return {
         -- Opens a popup that displays documentation about the word under your cursor
         --  See `:help K` for why this keymap
         map('K', vim.lsp.buf.hover, 'Hover Documentation')
-
       end,
     })
 
@@ -55,14 +54,13 @@ return {
               pycodestyle = {
                 enabled = true,
                 ignore = { 'W503', 'E121', 'E123', 'E3' },
-                maxLineLength = 130
+                maxLineLength = 130,
               },
               pylint = {
                 enabled = true,
-                args = { '--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name' }
-              }
+                args = { '--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name' },
+              },
             },
-
           },
         },
       },
@@ -71,15 +69,15 @@ return {
         -- cmd = { "clangd --background-index --clang-tidy" },
       },
       jdtls = {
-        cmd = { "jdtls" },
-        filetypes = { "java" },
+        cmd = { 'jdtls' },
+        filetypes = { 'java' },
       },
       tsserver = {},
       tailwindcss = {
         filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'rust' },
         init_options = {
           userLanguages = {
-            rust = "html",
+            rust = 'html',
           },
         },
       },
@@ -90,13 +88,13 @@ return {
           html = {
             options = {
               -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-              ["bem.enabled"] = true,
+              ['bem.enabled'] = true,
             },
           },
           --userLanguages = {
           --rust = 'html'
           --}
-        }
+        },
       },
       rust_analyzer = {},
       lua_ls = {
@@ -108,13 +106,13 @@ return {
               library = {
                 '${3rd}/luv/library',
                 unpack(vim.api.nvim_get_runtime_file('', true)),
-              }
+              },
             },
             completion = {
               callSnippet = 'Replace',
             },
             diagnostics = { disable = { 'missing-fields' } },
-            telemetry = { enable = false, },
+            telemetry = { enable = false },
           },
         },
       },
@@ -127,7 +125,7 @@ return {
             analyses = {
               shadow = true,
               unusedparams = true,
-            }
+            },
           },
         },
       },
@@ -137,11 +135,8 @@ return {
       ui = {
         border = 'rounded',
         height = 0.8,
-      }
+      },
     }
-
-
-
 
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
@@ -162,23 +157,16 @@ return {
     }
 
     -- Update diagnostics in insert mode
-    vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-      vim.lsp.diagnostic.on_publish_diagnostics, {
-        update_in_insert = true,
-      })
+    vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      update_in_insert = true,
+    })
 
     -- Use rounded borders for hover and signature help
     require('lspconfig.ui.windows').default_options.border = 'rounded'
-    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-      vim.lsp.handlers.hover,
-      { border = 'rounded' }
-    )
-    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-      vim.lsp.handlers.signature_help,
-      { border = 'rounded' }
-    )
-    vim.diagnostic.config({
-      float = { border = 'rounded' }
-    })
+    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
+    vim.diagnostic.config {
+      float = { border = 'rounded' },
+    }
   end,
 }

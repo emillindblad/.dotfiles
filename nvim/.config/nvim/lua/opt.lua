@@ -50,7 +50,7 @@ vim.opt.undofile = true
 
 -- Enable spell check for swedish and english
 vim.opt.spell = true
-vim.opt.spelllang = "sv,en_us"
+vim.opt.spelllang = 'sv,en_us'
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -75,4 +75,3 @@ vim.api.nvim_create_autocmd('textyankpost', {
     vim.highlight.on_yank()
   end,
 })
-

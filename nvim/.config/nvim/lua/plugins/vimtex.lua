@@ -7,6 +7,6 @@ return {
     vim.g.vimtex_quickfix_mode = 0
     vim.g.vimtex_complete_enabled = 1
     vim.g.vimtex_complete_close_braces = 1
-    vim.g.vimtex_matchparen_enabled  =  0
-  end
+    vim.g.vimtex_matchparen_enabled = 0
+  end,
 }

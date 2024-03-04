@@ -2,7 +2,8 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   dependencies = {
-    { 'nvim-treesitter/nvim-treesitter-context',
+    {
+      'nvim-treesitter/nvim-treesitter-context',
       config = function()
         require('treesitter-context').setup {
           enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
@@ -19,8 +20,8 @@ return {
           },
           mode = 'cursor',
         }
-      end
-    }
+      end,
+    },
   },
   config = function()
     require('nvim-treesitter.configs').setup {
@@ -36,5 +37,5 @@ return {
         additional_vim_regex_highlighting = false,
       },
     }
-  end
+  end,
 }

@@ -1,6 +1,7 @@
 ---@diagnostic disable: undefined-global
 return {
-  s({ trig="!", desc="LaTeX boilerplate" },
+  s(
+    { trig = '!', desc = 'LaTeX boilerplate' },
     fmta(
       [[
         \documentclass[a4paper,12pt]{article}
@@ -11,11 +12,12 @@ return {
             <>
         \end{document}
       ]],
-      { i(1),i(2)}
+      { i(1), i(2) }
     )
   ),
 
-  s({ trig="fig", desc="Figure environment" },
+  s(
+    { trig = 'fig', desc = 'Figure environment' },
     fmta(
       [[
         \begin{figure}[<>]
@@ -25,9 +27,7 @@ return {
             \label{fig:<>}
         \end{figure}
       ]],
-      { i(1,"htpb"),i(2),i(3),i(4)}
+      { i(1, 'htpb'), i(2), i(3), i(4) }
     )
   ),
 }
-
-

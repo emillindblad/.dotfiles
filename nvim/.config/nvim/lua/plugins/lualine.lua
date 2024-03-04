@@ -5,17 +5,17 @@ return {
   },
   config = function()
     local colors = {
-      color0   = "#444444",
-      color1   = "#f2c68a",
-      color2   = "#d0d0d0",
-      color3   = "#585858",
-      color6   = "#353535",
-      color7   = "#e5786d",
-      color10  = "#95e454",
-      color13  = "#8ac6f2",
-      color14  = "#a8a8a8",
-      color15  = "#969696",
-      color16  = "#666666",
+      color0 = '#444444',
+      color1 = '#f2c68a',
+      color2 = '#d0d0d0',
+      color3 = '#585858',
+      color6 = '#353535',
+      color7 = '#e5786d',
+      color10 = '#95e454',
+      color13 = '#8ac6f2',
+      color14 = '#a8a8a8',
+      color15 = '#969696',
+      color16 = '#666666',
     }
 
     local wombat = {
@@ -41,25 +41,26 @@ return {
         b = { fg = colors.color16, bg = colors.color6 },
         c = { fg = colors.color15, bg = colors.color6 },
       },
-
     }
     require('lualine').setup {
       options = {
         theme = wombat,
-        component_separators = { left = "|", right = "|" }
+        component_separators = { left = '|', right = '|' },
       },
       sections = {
         lualine_b = {
-          'branch', 'diagnostics' },
+          { 'branch', icon = '' },
+          'diagnostics',
+        },
         lualine_c = {
           {
             'filename',
             symbols = {
-              readonly = '[RO]'
-            }
-          }
+              readonly = '[RO]',
+            },
+          },
         },
       },
     }
-  end
+  end,
 }
