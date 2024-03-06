@@ -3,7 +3,7 @@ configuration {
     display-window:                 "Window";
     show-icons:true;
 }
- 
+
 * {
     lines: 15;
     columns: 1;
@@ -12,7 +12,7 @@ configuration {
     text-color: #EFEFEF;
     font: "Source Code Pro 14";
 }
- 
+
 #window {
     border: 0;
     border-radius: 4px;
@@ -20,7 +20,7 @@ configuration {
     width: 40%;
     height: 30%;
 }
- 
+
 #mainbox {
     background-color: #00000000;
     children: [inputbar, listview];
@@ -30,8 +30,8 @@ configuration {
     border: 1px;
     border-color: @base0D;
 }
- 
- 
+
+
 #listview {
     background-color: #00000000;
     fixed-height: 0;
@@ -40,24 +40,24 @@ configuration {
     scrollbar: false;
     padding: 10px 10px 0px;
 }
- 
+
 #element {
     background-color: #00000000;
     border: 0;
     border-radius: 15px;
     padding: 3 0  3 4 ;
 }
- 
+
 #element selected {
-    background-color: #C50ED2;
+    background-color: #88C0D0;
     text-color: #EFEFEF;
 }
- 
+
 #inputbar {
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
     background-color: #00000000;
 }
- 
+
 #case-indicator {
     background-color: #00000000;
     spacing:    0;
@@ -70,7 +70,7 @@ configuration {
     background-color: #00000000;
     spacing:    0;
 }
- 
+
 #textbox-prompt-colon {
     background-color: #00000000;
     expand:     false;
@@ -79,3 +79,4 @@ configuration {
 }
 
 
+@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
