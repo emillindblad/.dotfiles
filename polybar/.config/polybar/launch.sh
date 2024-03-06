@@ -9,21 +9,23 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 # Launch Polybar on all monitors, using default config location ~/.config/polybar/config
 if type "xrandr"; then
     for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+
         # Launch laptop bar if on laptop
         if [ "$(cat /etc/hostname)" = "deathstar" ]; then
-            MONITOR=$m polybar --reload laptop &
-            continue
+            echo "Launching laptop bar"
+            MONITOR=$m polybar --reload -c laptop.ini laptop &
+            exit
         fi
 
         # Put main bar on middle monitor
         if [ $m == 'DP-0' ]; then
-            MONITOR=$m polybar --reload 1440pbar &
+            echo "Launching main bar"
+            MONITOR=$m polybar --reload -c desktop-main.ini desktop-main &
         else
-            MONITOR=$m polybar --reload mybar &
+            echo "Launching aux bar"
+            MONITOR=$m polybar --reload -c desktop-aux.ini desktop-aux &
         fi
     done
-else
-    polybar --reload mybar &
 fi
 
 echo "Polybar launched..."
