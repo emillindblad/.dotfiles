@@ -13,17 +13,17 @@ if type "xrandr"; then
         # Launch laptop bar if on laptop
         if [ "$(cat /etc/hostname)" = "deathstar" ]; then
             echo "Launching laptop bar"
-            MONITOR=$m polybar --reload -c laptop.ini laptop &
+            MONITOR=$m polybar --reload -c $DOTFILES/polybar/.config/polybar/laptop.ini laptop &
             exit
         fi
 
         # Put main bar on middle monitor
         if [ $m == 'DP-0' ]; then
             echo "Launching main bar"
-            MONITOR=$m polybar --reload -c desktop-main.ini desktop-main &
+            MONITOR=$m polybar --reload -c $DOTFILES/polybar/.config/polybar/desktop-main.ini desktop-main &
         else
             echo "Launching aux bar"
-            MONITOR=$m polybar --reload -c desktop-aux.ini desktop-aux &
+            MONITOR=$m polybar --reload -c $DOTFILES/polybar/.config/polybar/desktop-aux.ini desktop-aux &
         fi
     done
 fi
