@@ -27,6 +27,9 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Source script for lfcd
+source $DOTFILES/lf/.config/lf/lf.bash
+
 # Aliases
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
