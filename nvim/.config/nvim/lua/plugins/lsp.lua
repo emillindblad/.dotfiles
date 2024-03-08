@@ -19,8 +19,8 @@ return {
         map('<leader>gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
         map('<leader>re', vim.lsp.buf.references, '[R]f[E]rences')
         map('<leader>rn', vim.lsp.buf.rename, '[R]e[N]ame')
-        map('<leader>vh', vim.lsp.buf.hover, '[V]im [H]over')
-        map('<leader><cr>', vim.lsp.buf.code_action, '[C]ode [A]ction')
+        map('K', vim.lsp.buf.hover, 'Hover Documentation')
+        map('<leader><CR>', vim.lsp.buf.code_action, '[C]ode [A]ction')
         map('<leader>ds', vim.diagnostic.open_float, '[D]agnostic [S]how')
         map('<leader>dn', vim.diagnostic.goto_next, '[D]agnostic [N]ext')
         map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
@@ -36,10 +36,6 @@ return {
         --  Useful when you're not sure what type a variable is and you want to see
         --  the definition of its *type*, not where it was *defined*.
         map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-
-        -- Opens a popup that displays documentation about the word under your cursor
-        --  See `:help K` for why this keymap
-        map('K', vim.lsp.buf.hover, 'Hover Documentation')
       end,
     })
 

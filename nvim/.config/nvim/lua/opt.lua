@@ -50,7 +50,7 @@ vim.opt.undofile = true
 
 -- Enable spell check for swedish and english
 vim.opt.spell = true
-vim.opt.spelllang = 'sv,en_us'
+vim.opt.spelllang = 'en_us,sv'
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true

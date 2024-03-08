@@ -15,3 +15,7 @@ vim.keymap.set('n', '<C-k>', '<cmd>cprev<cr>zz', { desc = 'Previous item in Quic
 vim.keymap.set('n', '<leader>pv', '<cmd>Ex<cr>', { desc = 'Open netrw' })
 
 vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Find and replace' })
+
+vim.keymap.set('n', '<leader>ls', function()
+  require('luasnip.loaders.from_lua').lazy_load { paths = { vim.fn.stdpath('config') .. '/LuaSnip' } }
+end, { desc = '[L]oad [S]nippets' })

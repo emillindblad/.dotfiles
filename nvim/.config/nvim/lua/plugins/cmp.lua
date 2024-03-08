@@ -26,11 +26,14 @@ return {
     local tw_colorizer = require('tailwindcss-colorizer-cmp')
 
     local luasnip = require('luasnip')
-    luasnip.config.setup { enable_autosnippets = true }
+    luasnip.config.setup {
+      history = true,
+      enable_autosnippets = true,
+      update_events = 'TextChanged,TextChangedI',
+    }
     require('luasnip.loaders.from_lua').lazy_load { paths = { vim.fn.stdpath('config') .. '/LuaSnip' } }
 
     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-
     cmp.setup {
       window = {
         completion = cmp.config.window.bordered(),
