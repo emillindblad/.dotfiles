@@ -14,7 +14,7 @@ if type "xrandr"; then
         if [ "$(cat /etc/hostname)" = "deathstar" ]; then
             echo "Launching laptop bar"
             MONITOR=$m polybar --reload -c $DOTFILES/polybar/.config/polybar/laptop.ini laptop &
-            exit
+            continue
         fi
 
         # Put main bar on middle monitor
