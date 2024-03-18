@@ -14,7 +14,7 @@ set $mod Mod4
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec wezterm
 
 # start a floating terminal, resize and move to center of screen
 bindsym $mod+Shift+Return exec scratchpad
