@@ -3,7 +3,7 @@ export PATH=/home/emil/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/l
 
 # Default programs
 export EDITOR="nvim"
-export TERMINAL="konsole"
+export TERMINAL="wezterm"
 export READER="zathura"
 export BROWSER="firefox"
 
