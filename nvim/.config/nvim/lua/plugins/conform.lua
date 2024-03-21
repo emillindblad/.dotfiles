@@ -5,6 +5,7 @@ return {
       -- Enable format on save for specified filetypes
       local enable_filetypes = {
         'lua',
+        'rust',
       }
       if vim.tbl_contains(enable_filetypes, vim.bo[bufnr].filetype) then
         return {
