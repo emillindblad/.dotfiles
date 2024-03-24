@@ -16,18 +16,24 @@ return {
   },
   config = function()
     local actions = require('telescope.actions')
+    local telescopeConfig = require('telescope.config')
+
+    -- Clone the default Telescope configuration
+    local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+
+    -- I want to search in hidden/dot files.
+    table.insert(vimgrep_arguments, '--hidden')
+    -- I don't want to search in the `.git` directory.
+    table.insert(vimgrep_arguments, '--glob')
+    table.insert(vimgrep_arguments, '!**/.git/*')
+
     require('telescope').setup {
       defaults = {
-        -- **`hidden = true` is not supported in text grep commands.
-        -- **Add new arguments
-        --vimgrep_arguments = vimgrep_arguments,
+        vimgrep_arguments = vimgrep_arguments,
 
-        --file_sorter = require('telescope.sorters').get_fzy_sorter,
         prompt_prefix = ' > ',
         color_devicons = true,
         file_ignore_patterns = { '.git/', 'node_modules' },
-        --file_previewer = require('telescope.previewers').vim_buffer_cat.new,
-        --grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
       },
       pickers = {
         find_files = {
@@ -53,19 +59,18 @@ return {
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'media_files')
 
-    -- See `:help telescope.builtin`
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Search git repo' })
+    vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '[P]roject [F]iles' })
     vim.keymap.set('n', '<leader>pb', builtin.buffers, { desc = '[P]roject [B]uffers' })
-    -- TODO: Fix arguments for these
     vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>pw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
 
-    vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '[P]roject [F]iles' })
     vim.keymap.set('n', '<leader>dl', builtin.diagnostics, { desc = '[D]iagnostic [L]ist' })
     vim.keymap.set('n', '<leader>ht', builtin.help_tags, { desc = '[H]elp [T]ags' })
-    vim.keymap.set('n', '<leader>tt', builtin.builtin, { desc = '[T]elsescope [T]elsescope' })
-    vim.keymap.set('n', '<leader>vrc', function() -- Search dotfiles
+    vim.keymap.set('n', '<leader>tt', builtin.builtin, { desc = '[T]elescope [T]elescope' })
+    -- Search dotfiles
+    vim.keymap.set('n', '<leader>vrc', function()
       builtin.find_files {
         prompt_title = ' Dotfiles ',
         cwd = '$HOME/.dotfiles',
