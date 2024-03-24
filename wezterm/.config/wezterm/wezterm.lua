@@ -9,12 +9,7 @@ config.colors = {
 config.window_background_opacity = 0.9
 
 config.font = wezterm.font('Source Code Pro', { weight = 'Medium' })
-config.font_rules = {
-  {
-    intensity = 'Bold',
-    font = wezterm.font('Source Code Pro', { bold = true }),
-  },
-}
+-- config.font = wezterm.font('Monocraft', { weight = 'Medium' })
 
 config.enable_tab_bar = false
 return config
