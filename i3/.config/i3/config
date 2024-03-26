@@ -252,7 +252,6 @@ bindsym $mod+r mode "resize"
 # >>> Window rules <<<
     # >>> Avoid tiling Plasma popups, dropdown windows, etc. <<<
     # For the first time, manually resize them, i3 will remember the setting for floating windows
-
     for_window [class="yakuake"] floating enable;
     for_window [class="lattedock"] floating enable;
     for_window [class="plasmashell"] floating enable;
@@ -276,7 +275,6 @@ bindsym $mod+r mode "resize"
     no_focus [class="jetbrains-code-with-me-guest"]
 
  # >>> Avoid tiling for non-Plasma stuff <<<
-
     for_window [window_role="pop-up"] floating enable
     for_window [window_role="bubble"] floating enable
     for_window [window_role="task_dialog"] floating enable
@@ -298,3 +296,6 @@ bindsym $mod+r mode "resize"
 
     for_window [instance="origin.exe"] floating enable
     for_window [class="steam_app_1182480" title="Origin"] floating enable
+
+    # Floating for Steam big picture
+    for_window [title="Steam Big Picture Mode"] floating enable
