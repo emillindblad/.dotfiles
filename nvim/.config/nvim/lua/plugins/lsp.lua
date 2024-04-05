@@ -43,41 +43,10 @@ return {
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     local servers = {
-      pylsp = {
-        settings = {
-          pylsp = {
-            plugins = {
-              pycodestyle = {
-                enabled = true,
-                ignore = { 'W503', 'E121', 'E123', 'E3' },
-                maxLineLength = 130,
-              },
-              pylint = {
-                enabled = true,
-                args = { '--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name' },
-              },
-            },
-          },
-        },
-      },
-      texlab = {},
+      bashls = {},
       clangd = {
         -- cmd = { "clangd --background-index --clang-tidy" },
       },
-      jdtls = {
-        cmd = { 'jdtls' },
-        filetypes = { 'java' },
-      },
-      tsserver = {},
-      tailwindcss = {
-        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'rust' },
-        init_options = {
-          userLanguages = {
-            rust = 'html',
-          },
-        },
-      },
-      eslint = {},
       emmet_ls = {
         filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
         init_options = {
@@ -87,12 +56,25 @@ return {
               ['bem.enabled'] = true,
             },
           },
-          --userLanguages = {
-          --rust = 'html'
-          --}
         },
       },
-      rust_analyzer = {},
+      eslint = {},
+      gopls = {
+        settings = {
+          gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            staticcheck = true,
+            analyses = {
+              shadow = true,
+              unusedparams = true,
+            },
+          },
+        },
+      },
+      jdtls = {
+        cmd = { 'jdtls' },
+      },
       lua_ls = {
         settings = {
           Lua = {
@@ -112,19 +94,34 @@ return {
           },
         },
       },
-      gopls = {
+      pylsp = {
         settings = {
-          gopls = {
-            completeUnimported = true,
-            usePlaceholders = true,
-            staticcheck = true,
-            analyses = {
-              shadow = true,
-              unusedparams = true,
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                enabled = true,
+                ignore = { 'W503', 'E121', 'E123', 'E3' },
+                maxLineLength = 130,
+              },
+              pylint = {
+                enabled = true,
+                args = { '--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name' },
+              },
             },
           },
         },
       },
+      rust_analyzer = {},
+      tailwindcss = {
+        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'rust' },
+        init_options = {
+          userLanguages = {
+            rust = 'html',
+          },
+        },
+      },
+      texlab = {},
+      tsserver = {},
     }
 
     require('mason').setup {
