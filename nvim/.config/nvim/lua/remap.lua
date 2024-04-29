@@ -18,4 +18,5 @@ vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 vim.keymap.set('n', '<leader>ls', function()
   require('luasnip.loaders.from_lua').lazy_load { paths = { vim.fn.stdpath('config') .. '/LuaSnip' } }
+  require('fidget.notification').notify('Snippets reloaded!', nil, { skip_history = true })
 end, { desc = '[L]oad [S]nippets' })
