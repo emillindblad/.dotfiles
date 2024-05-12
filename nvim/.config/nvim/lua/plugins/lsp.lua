@@ -16,26 +16,14 @@ return {
 
         -- TODO: Look into using telescope for some of these
         map('<leader>gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-        map('<leader>gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-        map('<leader>re', vim.lsp.buf.references, '[R]f[E]rences')
-        map('<leader>rn', vim.lsp.buf.rename, '[R]e[N]ame')
+        map('<leader>gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+        map('<leader>re', require('telescope.builtin').lsp_references, '[R][e]ferences')
+        map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
         map('K', vim.lsp.buf.hover, 'Hover Documentation')
         map('<leader><CR>', vim.lsp.buf.code_action, '[C]ode [A]ction')
         map('<leader>ds', vim.diagnostic.open_float, '[D]agnostic [S]how')
         map('<leader>dn', vim.diagnostic.goto_next, '[D]agnostic [N]ext')
         map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-        -- Find references for the word under your cursor.
-        map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-
-        -- Jump to the implementation of the word under your cursor.
-        --  Useful when your language has ways of declaring types without an actual implementation.
-        map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-
-        -- Jump to the type of the word under your cursor.
-        --  Useful when you're not sure what type a variable is and you want to see
-        --  the definition of its *type*, not where it was *defined*.
-        map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
       end,
     })
 
