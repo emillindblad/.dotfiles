@@ -30,10 +30,11 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+    local default_cmd = vim.fn.stdpath('data') .. '/mason/bin/'
     local servers = {
       bashls = {},
       clangd = {
-        -- cmd = { "clangd --background-index --clang-tidy" },
+        cmd = { default_cmd .. 'clangd', '--background-index', '--clang-tidy' },
       },
       emmet_ls = {
         filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
