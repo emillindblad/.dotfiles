@@ -3,7 +3,7 @@ local config = {}
 
 config.color_scheme = 'GruvboxDarkHard'
 config.colors = {
-  background = '#2e3440',
+  background = '#282828',
 }
 
 config.window_background_opacity = 0.9
