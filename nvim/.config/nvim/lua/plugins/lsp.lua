@@ -14,15 +14,16 @@ return {
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
 
-        -- TODO: Look into using telescope for some of these
         map('<leader>gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
         map('<leader>gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
         map('<leader>re', require('telescope.builtin').lsp_references, '[R][e]ferences')
         map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-        map('K', vim.lsp.buf.hover, 'Hover Documentation')
         map('<leader><CR>', vim.lsp.buf.code_action, '[C]ode [A]ction')
         map('<leader>ds', vim.diagnostic.open_float, '[D]agnostic [S]how')
         map('<leader>dn', vim.diagnostic.goto_next, '[D]agnostic [N]ext')
+        map('<leader>ti', function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { buf = event.buf })
+        end, '[T]oggle [I]nlay hint')
         map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
       end,
     })
@@ -71,7 +72,7 @@ return {
             workspace = {
               checkThirdParty = false,
               library = {
-                '${3rd}/luv/library',
+                -- '${3rd}/luv/library',
                 unpack(vim.api.nvim_get_runtime_file('', true)),
               },
             },
@@ -79,27 +80,50 @@ return {
               callSnippet = 'Replace',
             },
             diagnostics = { disable = { 'missing-fields' } },
-            telemetry = { enable = false },
           },
         },
       },
-      pylsp = {
+      --[[ pylsp = {
         settings = {
           pylsp = {
             plugins = {
+              autopep8 = { enabled = false },
+              yapf = { enabled = false },
+              ruff = { enabled = false },
+              pyflakes = { enabled = false },
+              pylint = { enabled = false },
+              jedi_completion = { fuzzy = true },
               pycodestyle = {
                 enabled = true,
                 ignore = { 'W503', 'E121', 'E123', 'E3' },
                 maxLineLength = 130,
               },
-              pylint = {
+              -- pylint = {
+              --   enabled = true,
+              --   args = { '--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name' },
+              -- },
+              pylsp_mypy = {
                 enabled = true,
-                args = { '--disable-all --enable-basic,typecheck,refactoring,classes,variables,miscellaneous --disable-invalid-name' },
               },
             },
           },
         },
+      }, ]]
+      pyright = {
+        settings = {
+          pyright = {
+            disableOrganizeImports = true,
+          },
+          python = {
+            analysis = {
+              -- ignore = { '*' },
+              autoSearchPaths = true,
+              diagnosticMode = 'openFilesOnly',
+            },
+          },
+        },
       },
+      ruff = {},
       rust_analyzer = {},
       tailwindcss = {
         filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'rust' },
@@ -133,6 +157,9 @@ return {
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
           -- TODO: Figure out how to extend cmd/just add flags
+          if server_name == 'ruff' then
+            server.capabilities.hoverProvider = false
+          end
           require('lspconfig')[server_name].setup(server)
         end,
       },

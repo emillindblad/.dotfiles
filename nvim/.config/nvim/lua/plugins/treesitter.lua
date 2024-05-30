@@ -24,7 +24,7 @@ return {
   config = function()
     require('nvim-treesitter.configs').setup {
       ensure_installed = { 'bash', 'lua', 'c', 'go', 'rust', 'python', 'lua', 'java', 'vim', 'vimdoc', 'tsx', 'typescript', 'javascript' },
-      ignore_install = { 'latex', 'bibtex', 'markdown' },
+      ignore_install = { 'latex', 'bibtex' },
       sync_install = true,
       auto_install = true,
       indent = { enable = true },
