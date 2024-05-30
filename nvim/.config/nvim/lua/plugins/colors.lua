@@ -13,9 +13,9 @@ return {
       contrast = 'hard',
       transparent_mode = true,
       overrides = {
-        TelescopeBorder = { fg = '#7c6f64' },
+        FloatBorder = { fg = '#7c6f64' },
+        LspInfoBorder = { fg = '#7c6f64' },
         QuickFixLine = { bg = '#504945' },
-        LspInfoBorder = { fg = '#ebdbb2' },
         TreesitterContext = { bg = '#504945' }, -- Transparent by default
       },
     }

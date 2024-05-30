@@ -89,7 +89,6 @@ return {
             menu = {
               buffer = '[Buf]',
               nvim_lsp = '[LSP]',
-              ultisnips = '[Snip]',
               latex_symbols = '[LaTeX]',
               path = '[Path]',
             },
