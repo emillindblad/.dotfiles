@@ -11,7 +11,7 @@ return {
       if vim.tbl_contains(enable_filetypes, vim.bo[bufnr].filetype) then
         return {
           timeout_ms = 500,
-          lsp_fallback = true,
+          lsp_format = 'fallback',
         }
       end
     end,
