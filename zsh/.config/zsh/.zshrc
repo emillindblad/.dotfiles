@@ -23,6 +23,11 @@ COMPLETION_WAITING_DOTS="true"
 
 plugins=(git fzf)
 
+# Settings for good fzf history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 source $ZSH/oh-my-zsh.sh
 
 # Source script for lfcd

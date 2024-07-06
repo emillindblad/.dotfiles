@@ -1,5 +1,5 @@
 # Path
-export PATH=/home/emil/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+# export PATH=/home/emil/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 
 # Default programs
 export EDITOR="nvim"
@@ -18,4 +18,5 @@ export DOTFILES="$HOME/.dotfiles"
 export npm_config_prefix="$HOME/.local"
 
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.cargo/env"
 export PATH="$PATH:$HOME/go/bin"
