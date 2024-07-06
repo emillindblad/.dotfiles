@@ -8,6 +8,7 @@ return {
       },
       win_options = {
         signcolumn = 'yes',
+        winbar = "%{v:lua.require('oil').get_current_dir()}",
       },
       keymaps = {
         ['<C-p>'] = false,
