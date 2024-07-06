@@ -17,6 +17,7 @@ return {
         LspInfoBorder = { fg = '#7c6f64' },
         QuickFixLine = { bg = '#504945' },
         TreesitterContext = { bg = '#504945' }, -- Transparent by default
+        Directory = { fg = '#83a598', bold = true },
       },
     }
 
