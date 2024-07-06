@@ -18,6 +18,7 @@ return {
     'hrsh7th/cmp-nvim-lsp-signature-help',
     'onsails/lspkind.nvim',
     'roobert/tailwindcss-colorizer-cmp.nvim',
+    'kristijanhusak/vim-dadbod-completion',
   },
   config = function()
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
@@ -102,5 +103,14 @@ return {
       -- Fixes gopls preselecting non 1st item
       preselect = cmp.PreselectMode.None,
     }
+
+    -- Setup vim-dadbod completion
+    cmp.setup.filetype({ 'sql' }, {
+      sources = {
+        { name = 'vim-dadbod-completion' },
+        { name = 'buffer' },
+        { name = 'path' },
+      },
+    })
   end,
 }
