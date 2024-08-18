@@ -6,6 +6,7 @@ return {
     'whoissethdaniel/mason-tool-installer.nvim',
     { 'j-hui/fidget.nvim', opts = { notification = { window = { winblend = 0 } } } },
     'folke/neodev.nvim',
+    'hrsh7th/cmp-nvim-lsp',
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -62,6 +63,7 @@ return {
           },
         },
       },
+      gitlab_ci_ls = {},
       jdtls = {
         cmd = { 'jdtls' },
       },

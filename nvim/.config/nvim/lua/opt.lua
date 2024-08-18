@@ -76,3 +76,11 @@ vim.api.nvim_create_autocmd('textyankpost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- Create gitlab-ci filetype
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.gitlab-ci*.{yml,uaml}',
+  callback = function()
+    vim.bo.filetype = 'yaml.gitlab'
+  end,
+})
