@@ -92,11 +92,30 @@ return {
     { trig = 'cblock', desc = 'Code block' },
     fmta(
       [[
-        \begin{minted}[frame=lines,framesep=2mm,linenos,breaklines,xleftmargin=0.7cm,autogobble=true,escapeinside=||]{<>}
-            <>
+        \begin{minted}
+        [
+        frame=lines,
+        framesep=2mm,
+        linenos,
+        breaklines,
+        xleftmargin=0.7cm,
+        autogobble=true,
+        escapeinside=||
+        ]{<>}
+        <>
         \end{minted}
       ]],
       { i(1), i(2) }
+    )
+  ),
+
+  s(
+    { trig = 'cinline', desc = 'Inline code' },
+    fmta(
+      [[
+        \mintinline{<>}{<>}
+      ]],
+      { i(1, 'language'), i(2, 'code') }
     )
   ),
 
