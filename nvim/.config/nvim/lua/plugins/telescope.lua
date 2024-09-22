@@ -76,7 +76,7 @@ return {
         cwd = '$HOME/.dotfiles',
         hidden = true,
       }
-    end, { desc = '[V]im [RC]' })
+    end, { desc = '[V]im [R][C]' })
 
     -- Also possible to pass additional configuration options.
     --  See `:help telescope.builtin.live_grep()` for information about particular keys

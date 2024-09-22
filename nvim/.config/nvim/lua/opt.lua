@@ -1,31 +1,36 @@
--- Make line numbers default
+-- Enable line numbers and relative line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- Set tab to equal 4 spaces
---[[
+-- Set tab to always equal 4 spaces
 vim.opt.tabstop = 4
+
+--[[
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
 ]]
 
+-- Insert 4 spaces instead of <Tab> character
 vim.opt.expandtab = true
 
--- Minimal number of screen lines to keep above and below the cursor.
+-- Minimal number of screen lines to keep above and below the cursor
 vim.opt.scrolloff = 10
 
 -- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
 
+-- Don't wrap text with "fake" lines
 vim.opt.wrap = false
 
+-- Don't highlight all search results
+-- And remove highlights when done searching
 vim.opt.hlsearch = false
 
 -- Enable break indent
 --vim.opt.breakindent = true
 
--- Keep signcolumn on by default
+-- Enable signcolumn. For diagnostic symbols
 vim.opt.signcolumn = 'yes'
 
 -- Case-insensitive searching
@@ -53,7 +58,7 @@ vim.opt.undofile = true
 vim.opt.spell = true
 vim.opt.spelllang = 'en_us,sv'
 
--- Configure how new splits should be opened
+-- Put new splits to the right
 vim.opt.splitright = true
 
 -- Sets how to display certain whitespace in the editor.
