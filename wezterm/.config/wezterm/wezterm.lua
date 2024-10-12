@@ -16,4 +16,5 @@ if wezterm.hostname() == 'endor' then
 end
 
 config.enable_tab_bar = false
+config.audible_bell = 'Disabled'
 return config
