@@ -6,7 +6,7 @@ config.colors = {
   background = '#282828',
 }
 
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.85
 
 config.font = wezterm.font('Source Code Pro', { weight = 'Medium' })
 -- config.font = wezterm.font('Monocraft', { weight = 'Medium' })

@@ -22,7 +22,7 @@ for_window [class="text_scratchpad"] floating enable resize set 650 450
 for_window [class="text_scratchpad"] sticky enable
 
 # emoji picker
-bindsym $mod+period exec emoji-picker
+bindsym $mod+period exec rofi -show emoji
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -205,15 +205,17 @@ bindsym $mod+r mode "resize"
 
 # >>> Colors <<<
   #00BCD4
-  set_from_resource $act i3wm.act #88C0D0
-  set_from_resource $ina i3wm.ina #222d32
-  set_from_resource $red i3wm.red #FF5252
+  set_from_resource $act        i3wm.act        #83A598
+  set_from_resource $act_text   i3wm.act_text   #1D2021
+  set_from_resource $ina        i3wm.ina        #3C3836
+  set_from_resource $ina_text   i3wm.ina        #D5C4A1
+  set_from_resource $red        i3wm.red        #FB4934
 
-  # Border colors          border  bg     text    indic
-  client.focused           $act    $act   $ina    $act
-  client.focused_inactive  $ina    $ina   $act    $ina
-  client.unfocused         $ina    $ina   $act    $ina
-  client.urgent            $red    $red   $ina    $red
+  # Border colors          border  bg     text          indic
+  client.focused           $act    $act   $act_text     $act
+  client.focused_inactive  $ina    $ina   $ina_text     $ina
+  client.unfocused         $ina    $ina   $ina_text     $ina
+  client.urgent            $red    $red   $ina          $red
 
 # >>> Use Mouse+$mod to drag floating windows <<<
 
