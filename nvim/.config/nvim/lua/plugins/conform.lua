@@ -7,6 +7,7 @@ return {
         'lua',
         'rust',
         'python',
+        'go',
       }
       if vim.tbl_contains(enable_filetypes, vim.bo[bufnr].filetype) then
         return {
@@ -18,6 +19,7 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       python = { 'ruff_format' },
+      go = { 'gopls' },
     },
   },
 }

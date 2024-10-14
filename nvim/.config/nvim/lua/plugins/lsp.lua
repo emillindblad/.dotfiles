@@ -60,6 +60,7 @@ return {
               shadow = true,
               unusedparams = true,
             },
+            gofumpt = true,
           },
         },
       },
