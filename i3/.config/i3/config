@@ -22,7 +22,7 @@ for_window [class="text_scratchpad"] floating enable resize set 650 450
 for_window [class="text_scratchpad"] sticky enable
 
 # emoji picker
-bindsym $mod+period exec rofi -show emoji
+bindsym $mod+period exec rofi -show emoji -emoji-mode copy
 
 # kill focused window
 bindsym $mod+Shift+q kill
