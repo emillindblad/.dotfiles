@@ -150,4 +150,18 @@ return {
       { i(1), i(0), rep(1) }
     )
   ),
+
+  s({ trig = 'mk', desc = 'Inline math', snippetType = 'autosnippet' }, fmta([[$<>$]], { i(1) })),
+
+  s(
+    { trig = 'dm', desc = 'Math block', snippetType = 'autosnippet' },
+    fmta(
+      [[
+      \[
+          <>
+      \]
+      ]],
+      { i(1) }
+    )
+  ),
 }
