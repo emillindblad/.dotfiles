@@ -127,14 +127,9 @@ return {
         },
       },
       ruff = {},
-      rust_analyzer = {},
+      -- rust_analyzer = {},
       tailwindcss = {
-        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'rust' },
-        init_options = {
-          userLanguages = {
-            rust = 'html',
-          },
-        },
+        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
       },
       texlab = {},
       ts_ls = {},
@@ -165,6 +160,8 @@ return {
           end
           require('lspconfig')[server_name].setup(server)
         end,
+        -- Let rustaceanvim handle rust_analyzer
+        ['rust_analyzer'] = function() end,
       },
     }
 
