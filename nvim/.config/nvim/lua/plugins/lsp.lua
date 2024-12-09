@@ -5,7 +5,17 @@ return {
     'williamboman/mason-lspconfig.nvim',
     'whoissethdaniel/mason-tool-installer.nvim',
     { 'j-hui/fidget.nvim', opts = { notification = { window = { winblend = 0 } } } },
-    'folke/neodev.nvim',
+    {
+      'folke/lazydev.nvim',
+      ft = 'lua',
+      opts = {
+        library = {
+          -- See the configuration section for more details
+          -- Load luvit types when the `vim.uv` word is found
+          { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+        },
+      },
+    },
     'hrsh7th/cmp-nvim-lsp',
   },
   config = function()
@@ -71,14 +81,6 @@ return {
       lua_ls = {
         settings = {
           Lua = {
-            runtime = { version = 'LuaJIT' },
-            workspace = {
-              checkThirdParty = false,
-              library = {
-                -- '${3rd}/luv/library',
-                unpack(vim.api.nvim_get_runtime_file('', true)),
-              },
-            },
             completion = {
               callSnippet = 'Replace',
             },
@@ -148,7 +150,6 @@ return {
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-    require('neodev').setup()
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
