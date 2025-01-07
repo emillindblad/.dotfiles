@@ -4,9 +4,8 @@
 #  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
 
-# add 'export ZDOTDIR="$HOME/.config/zsh"'
-# to: '/etc/zsh/zshenv'
-# to use tell zsh to use .config folder
+# run: echo 'export ZDOTDIR="$HOME/.config/zsh"' >> /etc/zsh/zshenv
+# to tell zsh to use .config folder
 
 export ZSH="/home/emil/.oh-my-zsh"
 export ZSH_CUSTOM="/home/emil/.config/zsh/custom"

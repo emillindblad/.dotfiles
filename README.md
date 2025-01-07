@@ -1,6 +1,13 @@
 # .dotfiles
 Config files for various software that I use. My Neovim config can be found [here](https://github.com/emillindblad/.dotfiles/tree/master/nvim/.config/nvim).
 
+## Dependencies
+Small utils needed for various applications.
+- [ctpv](https://github.com/NikitaIvanovV/ctpv) - Previewer - lf
+- [fzf](https://github.com/junegunn/fzf) - Fuzzy finder - zsh
+- [ripgrep](https://github.com/BurntSushi/ripgrep) - Search tool - nvim
+- [xclip](https://github.com/astrand/xclip) - Clipboard manager - nvim,tmux
+
 ## Guide on how to use i3-gaps with KDE
 1. Create a new systemd *user unit* to start i3
 
@@ -21,7 +28,7 @@ MemoryAccounting=false
 ```
 2. Mask the old unit, so that it doesn't start:\
     `systemctl --user mask plasma-kwin_x11.service`
-3. Do a deamon-reload:\
+3. Do a daemon-reload:\
     `systemctl --user daemon-reload`
 4. Enable the new unit:\
     `systemctl --user enable plasma-custom-wm.service`
