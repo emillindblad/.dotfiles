@@ -22,7 +22,7 @@ return {
       [[
         \begin{figure}[<>]
             \centering
-            \includegraphics[width=0.8\textwidth]{<>}
+            \makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{<>}}
             \caption{<><>}
             \label{fig:<>}
         \end{figure}

@@ -5,7 +5,7 @@ return {
     'nvim-treesitter/nvim-treesitter-textobjects',
     {
       'nvim-treesitter/nvim-treesitter-context',
-      config = function()
+      --[[ config = function()
         require('treesitter-context').setup {
           throttle = true, -- Throttles plugin updates (may improve performance)
           patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
@@ -18,7 +18,7 @@ return {
           },
           mode = 'cursor',
         }
-      end,
+      end, ]]
     },
   },
   config = function()
