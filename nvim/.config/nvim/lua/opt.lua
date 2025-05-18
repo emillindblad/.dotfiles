@@ -70,6 +70,8 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
 
+-- vim.opt.winborder = 'rounded'
+
 -- Remove trailing whitespace on save
 vim.api.nvim_create_autocmd({ 'BufWritePre', 'BufWrite' }, {
   pattern = '*',

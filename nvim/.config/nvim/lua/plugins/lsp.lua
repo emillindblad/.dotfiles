@@ -24,18 +24,17 @@ return {
         local map = function(keys, func, desc)
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
-
+        -- stylua: ignore start
         map('<leader>gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
         map('<leader>gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
         map('<leader>re', require('telescope.builtin').lsp_references, '[R][e]ferences')
         map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
         map('<leader><CR>', vim.lsp.buf.code_action, '[C]ode [A]ction')
         map('<leader>ds', vim.diagnostic.open_float, '[D]agnostic [S]how')
-        map('<leader>dn', vim.diagnostic.goto_next, '[D]agnostic [N]ext')
-        map('<leader>ti', function()
-          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { buf = event.buf })
-        end, '[T]oggle [I]nlay hint')
+        map('<leader>dn', function() vim.diagnostic.jump { count = 1, float = true } end, '[D]agnostic [N]ext')
+        map('<leader>ti', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { buf = event.buf }) end, '[T]oggle [I]nlay hint')
         map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+        -- stylua: ignore end
       end,
     })
 
@@ -166,15 +165,35 @@ return {
       },
     }
 
-    -- Update diagnostics in insert mode
-    vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    vim.diagnostic.config {
       update_in_insert = true,
-    })
+      virtual_text = true,
+      float = { border = 'rounded' },
+    }
+
+    local hover = vim.lsp.buf.hover
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim.lsp.buf.hover = function()
+      return hover {
+        border = 'rounded',
+        -- max_width = 100,
+        -- max_width = math.floor(vim.o.columns * 0.7),
+        -- max_height = math.floor(vim.o.lines * 0.7),
+      }
+    end
+
+    local signature_help = vim.lsp.buf.signature_help
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim.lsp.buf.signature_help = function()
+      return signature_help {
+        border = 'rounded',
+      }
+    end
 
     -- Use rounded borders for hover and signature help
-    require('lspconfig.ui.windows').default_options.border = 'rounded'
-    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
-    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
-    vim.diagnostic.config { float = { border = 'rounded' } }
+    -- require('lspconfig.ui.windows').default_options.border = 'rounded'
+    -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
+    -- -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.buf.
+    -- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.buf.signature_help, { border = 'rounded' })
   end,
 }
