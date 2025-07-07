@@ -1,0 +1,35 @@
+let mapleader = " "
+
+Plug "machakann/vim-highlightedyank"
+Plug "tpope/vim-commentary"
+
+" set clipboard=unnamed
+
+set scrolloff=5
+
+" Good search
+set incsearch
+set ignorecase
+set smartcase
+set nohlsearch
+
+set relativenumber
+
+map Q gq
+
+nmap <leader>gi <Action>(GotoImplementation)
+nmap <leader>re <Action>(ShowUsages)
+nmap <leader>ds <Action>(ShowErrorDescription)
+nmap <leader>rn <Action>(RenameElement)
+nmap K <Action>(ShowHoverInfo)
+
+
+nmap ++ <Action>(CommentByLineComment)
+vmap ++ <Action>(CommentByLineComment)
+
+map Y y$
+
+map <leader>y "+y
+map <leader>Y "+y$
+map <leader>pp "+p
+
