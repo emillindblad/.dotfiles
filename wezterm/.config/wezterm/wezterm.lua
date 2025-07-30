@@ -12,7 +12,7 @@ config.font = wezterm.font('Source Code Pro', { weight = 'Medium' })
 -- config.font = wezterm.font('Monocraft', { weight = 'Medium' })
 
 if wezterm.hostname() == 'endor' then
-  config.font_size = 13.2
+  config.font_size = 14
 end
 
 config.enable_tab_bar = false
