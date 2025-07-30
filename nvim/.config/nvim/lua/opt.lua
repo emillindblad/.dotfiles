@@ -93,3 +93,10 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
     vim.bo.filetype = 'yaml.gitlab'
   end,
 })
+
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.texscratch',
+  callback = function()
+    vim.bo.filetype = 'tex'
+  end,
+})

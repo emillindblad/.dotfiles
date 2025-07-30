@@ -21,6 +21,13 @@ bindsym $mod+Shift+Return exec scratchpad
 for_window [class="text_scratchpad"] floating enable resize set 650 450
 for_window [class="text_scratchpad"] sticky enable
 
+# Markdown preview
+for_window [class="firefox" title="「LaTeX scratch.*"] floating enable resize set 700 900
+for_window [class="firefox" title="「LaTeX scratch.*"] sticky enable
+for_window [class="firefox" title="「LaTeX scratch.*"] move absolute position center
+for_window [class="firefox" title="「LaTeX scratch.*"] move right 200 px
+no_focus [class="firefox" title="「LaTeX scratch.*"]
+
 # emoji picker
 bindsym $mod+period exec rofi -show emoji -emoji-mode copy
 
@@ -301,3 +308,5 @@ bindsym $mod+r mode "resize"
 
     # Floating for Steam big picture
     for_window [title="Steam Big Picture Mode"] floating enable
+
+    for_window [class="jetbrains-studio"] floating enable
