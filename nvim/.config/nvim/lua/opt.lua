@@ -72,6 +72,23 @@ vim.opt.inccommand = 'split'
 
 -- vim.opt.winborder = 'rounded'
 
+vim.opt.exrc = true
+
+-- local wsl_overrides = function()
+--   if vim.fn.executable('explorer.exe') == 1 then
+--     local ui_open = vim.ui.open
+--     ---@diagnostic disable-next-line: duplicate-set-field
+--     vim.ui.open = function()
+--       return ui_open {
+--         cmd = { 'explorer.exe' },
+--       }
+--     end
+--   end
+-- end
+--
+
+-- wsl_overrides()
+
 -- Remove trailing whitespace on save
 vim.api.nvim_create_autocmd({ 'BufWritePre', 'BufWrite' }, {
   pattern = '*',
@@ -82,7 +99,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre', 'BufWrite' }, {
 vim.api.nvim_create_autocmd('textyankpost', {
   desc = 'Highlight when yanking (copying) text',
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
 })
 

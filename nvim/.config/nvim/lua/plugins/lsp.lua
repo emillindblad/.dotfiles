@@ -1,8 +1,8 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    { 'mason-org/mason.nvim', opts = {} },
+    'mason-org/mason-lspconfig.nvim',
     'whoissethdaniel/mason-tool-installer.nvim',
     { 'j-hui/fidget.nvim', opts = { notification = { window = { winblend = 0 } } } },
     {
@@ -42,6 +42,7 @@ return {
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     local default_cmd = vim.fn.stdpath('data') .. '/mason/bin/'
+
     local servers = {
       bashls = {},
       clangd = {
@@ -149,6 +150,7 @@ return {
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+    ---@diagnostic disable-next-line: missing-fields
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)

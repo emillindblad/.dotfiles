@@ -17,14 +17,12 @@ return {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-nvim-lsp-signature-help',
     'onsails/lspkind.nvim',
-    'roobert/tailwindcss-colorizer-cmp.nvim',
     'kristijanhusak/vim-dadbod-completion',
   },
   config = function()
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     local cmp = require('cmp')
     local lspkind = require('lspkind')
-    local tw_colorizer = require('tailwindcss-colorizer-cmp')
     local luasnip = require('luasnip')
 
     luasnip.config.setup {
@@ -95,8 +93,6 @@ return {
               path = '[Path]',
             },
           }(entry, vim_item)
-          tw_colorizer.setup { color_square_width = 2 }
-          tw_colorizer.formatter(entry, vim_item)
           return kind
         end,
       },
