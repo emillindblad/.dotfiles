@@ -18,15 +18,17 @@ bindsym $mod+Return exec wezterm
 
 # start a floating terminal, resize and move to center of screen
 bindsym $mod+Shift+Return exec scratchpad
-for_window [class="text_scratchpad"] floating enable resize set 650 450
+for_window [class="text_scratchpad"] floating enable resize set 900 450
 for_window [class="text_scratchpad"] sticky enable
+for_window [class="text_scratchpad"] move left 200 px
 
 # Markdown preview
+no_focus [class="firefox" title="「LaTeX scratch.*"]
 for_window [class="firefox" title="「LaTeX scratch.*"] floating enable resize set 700 900
+no_focus [class="firefox" title="「LaTeX scratch.*"]
 for_window [class="firefox" title="「LaTeX scratch.*"] sticky enable
 for_window [class="firefox" title="「LaTeX scratch.*"] move absolute position center
 for_window [class="firefox" title="「LaTeX scratch.*"] move right 200 px
-no_focus [class="firefox" title="「LaTeX scratch.*"]
 
 # emoji picker
 bindsym $mod+period exec rofi -show emoji -emoji-mode copy

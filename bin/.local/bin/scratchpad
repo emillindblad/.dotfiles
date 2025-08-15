@@ -2,4 +2,4 @@
 
 tmp_file=$(mktemp).texscratch
 
-wezterm start --always-new-process --class "text_scratchpad" nvim +"startinsert" +"setlocal spell" ${tmp_file} && xclip -selection clipboard < $tmp_file
+wezterm start --always-new-process --class "text_scratchpad" nvim +"startinsert" +"setlocal spell" +"MarkdownPreview" ${tmp_file} && xclip -selection clipboard < $tmp_file
