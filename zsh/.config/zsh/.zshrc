@@ -36,7 +36,7 @@ source $DOTFILES/lf/.config/lf/lf.bash
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias weather="curl wttr.in"
-alias vrc="cd ~/.dotfiles/nvim/.config/nvim && nvim ."
+alias vrc="cd ~/.dotfiles && nvim ."
 alias vim="nvim"
 alias v="nvim"
 alias sshagent="eval $(ssh-agent)"
